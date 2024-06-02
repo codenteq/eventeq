@@ -7,3 +7,5 @@ Route::get('/', function () {
         'data' => 'Hello World!',
     ]);
 });
+
+Route::get('/application', [\App\Http\Controllers\EventApplicationController::class, 'index']);
