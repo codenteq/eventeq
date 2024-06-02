@@ -2,10 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return inertia('Welcome', [
-        'data' => 'Hello World!',
-    ]);
-});
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('/application', [\App\Http\Controllers\EventApplicationController::class, 'index']);
+Route::get('/application/{event}', [\App\Http\Controllers\EventApplicationController::class, 'index']);
+Route::post('/application/{event}', [\App\Http\Controllers\EventApplicationController::class, 'store'])->name('application.store');

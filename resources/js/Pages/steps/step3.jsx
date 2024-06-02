@@ -1,22 +1,14 @@
 import {Button, Input, Label} from "@codenteq/interfeys";
 import React, {useState} from "react";
 
-export default function Step3({ onNext, onPrev }) {
+export default function Step3({data, setData}) {
     const [dontCampingEquipment, setDontCampingEquipment] = useState(false);
 
     const handleDontCampingEquipmentChange = (event) => {
+        setData('dont_camping_equipment', event.target.checked)
         setDontCampingEquipment(event.target.checked);
     };
 
-    const handlePrevClick = () => {
-        console.log('Önceki butona tıklandı!');
-        onPrev();
-    };
-
-    const handleNextClick = () => {
-        console.log('Sonraki butona tıklandı!');
-        onNext();
-    };
     return (
         <>
             <div>
@@ -38,6 +30,8 @@ export default function Step3({ onNext, onPrev }) {
                     <div className="grid gap-5 mb-6 lg:grid-cols-2">
                         <Input
                             name="tent"
+                            value={data.tent}
+                            onChange={(e) => setData('tent', e.target.value)}
                             type="number"
                             label="Çadır"
                             helpText="Kaç adet çadır getirebilirsiniz?"
@@ -45,6 +39,8 @@ export default function Step3({ onNext, onPrev }) {
                         />
                         <Input
                             name="sleeping_bag"
+                            value={data.sleeping_bag}
+                            onChange={(e) => setData('sleeping_bag', e.target.value)}
                             type="number"
                             label="Uyku tulumu"
                             helpText="Kaç adet uyku tulumu getirebilirsiniz?"
@@ -52,6 +48,8 @@ export default function Step3({ onNext, onPrev }) {
                         />
                         <Input
                             name="Mat"
+                            value={data.mat}
+                            onChange={(e) => setData('mat', e.target.value)}
                             type="number"
                             label="Mat"
                             helpText="Kaç adet mat getirebilirsiniz?"
@@ -59,6 +57,8 @@ export default function Step3({ onNext, onPrev }) {
                         />
                         <Input
                             name="chair"
+                            value={data.chair}
+                            onChange={(e) => setData('chair', e.target.value)}
                             type="number"
                             label="Sandalye"
                             helpText="Kaç adet sandalye getirebilirsiniz?"
@@ -66,12 +66,6 @@ export default function Step3({ onNext, onPrev }) {
                         />
                     </div>
                 )}
-            </div>
-            <div className="flex items-center justify-between">
-                <button type="button" onClick={handlePrevClick} className="mr-2">
-                    Önceki
-                </button>
-                <Button type="submit" label="Sonraki" onClick={handleNextClick}/>
             </div>
         </>
     )

@@ -1,37 +1,32 @@
 import {Button, Input} from "@codenteq/interfeys";
 import React from "react";
 
-export default function Step4({ onNext, onPrev }) {
-    const handlePrevClick = () => {
-        console.log('Önceki butona tıklandı!');
-        onPrev();
-    };
-
-    const handleNextClick = () => {
-        console.log('Sonraki butona tıklandı!');
-        onNext();
-    };
+export default function Step4({data, setData}) {
     return (
         <>
             <div className="grid gap-5 mb-6 lg:grid-cols-2">
                 <Input
                     name="telescope"
+                    value={data.telescope}
+                    onChange={(e) => setData('telescope', e.target.value)}
                     type="number"
-                    value="0"
                     label="Teleskop"
                     helpText="Kaç adet teleskop getirebilirsiniz?"
                     className="block w-full"
                 />
                 <Input
                     name="telescope_brand"
+                    value={data.telescope_brand}
+                    onChange={(e) => setData('telescope_brand', e.target.value)}
                     type="text"
                     label="Teleskop markası"
                     className="block w-full"
                 />
                 <Input
                     name="swaddling"
+                    value={data.swaddling}
+                    onChange={(e) => setData('swaddling', e.target.value)}
                     type="number"
-                    value="0"
                     label="Kundak"
                     helpText="Kaç adet kundak getirebilirsiniz?"
                     className="block w-full"
@@ -44,50 +39,49 @@ export default function Step4({ onNext, onPrev }) {
                 />
                 <Input
                     name="binocular"
+                    value={data.binocular}
+                    onChange={(e) => setData('binocular', e.target.value)}
                     type="number"
-                    value="0"
                     label="Dürbün"
                     helpText="Kaç adet dürbün getirebilirsiniz?"
                     className="block w-full"
                 />
                 <Input
                     name="camera"
+                    value={data.camera}
+                    onChange={(e) => setData('camera', e.target.value)}
                     type="number"
-                    value="0"
                     label="Fotoğraf makinesi"
                     helpText="Kaç adet fotoğraf makinesi getirebilirsiniz?"
                     className="block w-full"
                 />
                 <Input
                     name="tripod"
+                    value={data.tripod}
+                    onChange={(e) => setData('tripod', e.target.value)}
                     type="number"
-                    value="0"
                     label="Tripod"
                     helpText="Kaç adet tripod getirebilirsiniz?"
                     className="block w-full"
                 />
                 <Input
                     name="walkie_talkie"
+                    value={data.walkie_talkie}
+                    onChange={(e) => setData('walkie_talkie', e.target.value)}
                     type="number"
-                    value="0"
                     label="Telsiz"
                     helpText="Kaç adet telsiz getirebilirsiniz?"
                     className="block w-full"
                 />
                 <Input
                     name="computer"
+                    value={data.computer}
+                    onChange={(e) => setData('computer', e.target.value)}
                     type="number"
-                    value="0"
                     label="Bilgisayar"
                     helpText="Kaç adet bilgisayar getirebilirsiniz?"
                     className="block w-full"
                 />
-            </div>
-            <div className="flex items-center justify-between">
-                <button type="button" onClick={handlePrevClick} className="mr-2">
-                    Önceki
-                </button>
-                <Button type="submit" label="Sonraki" onClick={handleNextClick}/>
             </div>
         </>
     )

@@ -2,10 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EventApplication\StoreEventApplicationRequest;
+use App\Models\City;
+use App\Models\Event;
+use App\Services\EventApplicationService;
+use Illuminate\Http\Client\Request;
+
 class EventApplicationController extends Controller
 {
-    public function index(): \Inertia\Response|\Inertia\ResponseFactory
+    public function __construct(private readonly EventApplicationService $eventApplicationService)
     {
-        return inertia('EventApplicationForm');
+    }
+
+    public function index(Event $event): \Inertia\Response|\Inertia\ResponseFactory
+    {
+        return inertia('EventApplicationForm', [
+            'cities' => City::all(),
+            'event' => $event,
+        ]);
+    }
+
+    public function store(StoreEventApplicationRequest $request,int $event): \Illuminate\Http\JsonResponse
+    {
+        $validated = $request->validated();
+
+        $this->eventApplicationService->create($validated, $event);
+
+        return response()->json([
+            'message' => 'Event application submitted successfully!',
+        ]);
     }
 }
