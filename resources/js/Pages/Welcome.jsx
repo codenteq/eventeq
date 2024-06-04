@@ -19,12 +19,12 @@ export default function Welcome({events}) {
                                 <div
                                     key={event.id}
                                     className="flex flex-col max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                                    <Link href={`/event/${event.id}`} className="flex-shrink-0">
+                                    <Link href={`/events/${event.id}`} className="flex-shrink-0">
                                         <img className="rounded-t-lg w-full" src={`storage/${event.img}`}
                                              alt={event.name}/>
                                     </Link>
                                     <div className="flex flex-col flex-grow p-5">
-                                        <Link href={`/event/${event.id}`} className="mb-2">
+                                        <Link href={`/events/${event.id}`} className="mb-2">
                                             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                                 {event.name}
                                             </h5>
@@ -34,7 +34,7 @@ export default function Welcome({events}) {
                                                 📍{event?.city?.name}
                                             </p>
                                         </div>
-                                        <Link href={`/event/${event.id}`} className="mt-3">
+                                        <Link href={`/events/${event.id}`} className="mt-3">
                                             <Button type="button" label="Etkinliği incele" className="w-full"/>
                                         </Link>
                                     </div>

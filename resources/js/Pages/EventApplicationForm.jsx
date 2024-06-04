@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 
 export default function EventApplicationForm({cities, event}) {
     const [step, setStep] = useState(1);
-    const {errors} = usePage().props
+    const {errors, flash} = usePage().props
     const form = useForm({
         full_name: null,
         email: null,
@@ -52,11 +52,17 @@ export default function EventApplicationForm({cities, event}) {
 
     function submit(e) {
         e.preventDefault()
-        form.post('/application/' + event.id, {
+        form.post('/applications/' + event.id, {
             data: form.data,
             onSuccess: () => {
                 toast.success('Başvurunuz başarıyla alındı.')
+                setTimeout(() => {
+                    window.location.href = '/events/' + event.id
+                }, 2000);
             },
+            onError: () => {
+                toast.error('Bir hata oluştu. Lütfen tekrar deneyin.')
+            }
         })
     }
 
