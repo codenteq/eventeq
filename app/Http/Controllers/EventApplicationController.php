@@ -29,12 +29,10 @@ class EventApplicationController extends Controller
         ]);
     }
 
-    public function store(StoreEventApplicationRequest $request,int $event): \Illuminate\Http\RedirectResponse
+    public function store(StoreEventApplicationRequest $request,int $event): void
     {
         $validated = $request->validated();
 
         $this->eventApplicationService->create($validated, $event);
-
-        return redirect()->route('event.show', $event);
     }
 }
