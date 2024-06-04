@@ -6,14 +6,14 @@ import Step4 from "./steps/step4.jsx";
 import Step5 from "./steps/step5.jsx";
 import {IdentificationIcon} from "@heroicons/react/24/outline/index.js";
 import {Button} from "@codenteq/interfeys";
-import {useForm, usePage} from "@inertiajs/react";
+import {router, useForm, usePage} from "@inertiajs/react";
 import MainLayout from "../Layouts/MainLayout.jsx";
 import toast from "react-hot-toast";
 
 export default function EventApplicationForm({cities, event}) {
     const [step, setStep] = useState(1);
     const {errors} = usePage().props
-    const { data, setData, post, processing} = useForm({
+    const form = useForm({
         full_name: null,
         email: null,
         phone: null,
@@ -40,7 +40,6 @@ export default function EventApplicationForm({cities, event}) {
         event_id: event.id
     })
 
-console.log(event)
 
     const handleNext = () => {
         setStep(step + 1);
@@ -53,8 +52,12 @@ console.log(event)
 
     function submit(e) {
         e.preventDefault()
-        post('/application/' + event.id, data)
-        toast.success('Başvurunuz başarıyla alındı.')
+        form.post('/application/' + event.id, {
+            data: form.data,
+            onSuccess: () => {
+                toast.success('Başvurunuz başarıyla alındı.')
+            },
+        })
     }
 
 
@@ -114,18 +117,18 @@ console.log(event)
 
                 <form onSubmit={submit} className="flex flex-col gap-y-11">
                     <div>
-                        {step === 1 && <Step1 data={data} setData={setData} cities={cities}/>}
-                        {step === 2 && <Step2 data={data} setData={setData}/>}
-                        {step === 3 && <Step3 data={data} setData={setData}/>}
-                        {step === 4 && <Step4 data={data} setData={setData}/>}
-                        {step === 5 && <Step5 data={data} setData={setData} event={event}/>}
+                        {step === 1 && <Step1 data={form.data} setData={form.setData} cities={cities}/>}
+                        {step === 2 && <Step2 data={form.data} setData={form.setData}/>}
+                        {step === 3 && <Step3 data={form.data} setData={form.setData}/>}
+                        {step === 4 && <Step4 data={form.data} setData={form.setData}/>}
+                        {step === 5 && <Step5 data={form.data} setData={form.setData} event={event}/>}
                     </div>
 
                     <div className={`flex items-center ${step !== 1 ? 'justify-between' : 'justify-end'}`}>
                         {step !== 1 && <Button type="button" label="Geri" onClick={handlePrev}/>}
                         {step !== 5 ?
                             <Button type="button" label="Sonraki" onClick={handleNext}/> : (
-                                <Button type="submit" label="Tamamla" disabled={processing}/>
+                                <Button type="submit" label="Tamamla" disabled={form.processing}/>
 
                             )}
                     </div>
