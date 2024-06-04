@@ -6,6 +6,7 @@ use App\Models\EventApplication;
 use App\Models\Group;
 use App\Models\GroupChild;
 use App\Models\User;
+use App\Notifications\EventApplicationNotification;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -14,13 +15,12 @@ class EventApplicationService
 {
     public function create(array $data, int $eventId): Model|Builder|null
     {
-        info('EventApplicationService::create', ['eventId' => $eventId]);
         $user = User::query()->where('email', $data['email'])->first();
 
-        $applicaton = null;
+        $application = null;
         $group = null;
 
-        DB::transaction(function () use ($data, $eventId, $user, &$applicaton, &$group) {
+        DB::transaction(function () use ($data, $eventId, &$user, &$application, &$group) {
             if (!$user) {
                 $user = User::query()->create([
                     'name' => $data['full_name'],
@@ -46,9 +46,7 @@ class EventApplicationService
                 }
             }
 
-            info('EventApplicationService::create', ['user' => $data]);
-
-            $applicaton = EventApplication::query()->create([
+            $application = EventApplication::query()->create([
                 'job' => $data['job'],
                 'tent' => $data['tent'],
                 'sleeping_bag' => $data['sleeping_bag'],
@@ -73,6 +71,8 @@ class EventApplicationService
             ]);
         });
 
-        return $applicaton;
+        $user->notify(new EventApplicationNotification($eventId, $user->name, $application->event->name));
+
+        return $application;
     }
 }
