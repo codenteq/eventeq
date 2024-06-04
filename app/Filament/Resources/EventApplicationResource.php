@@ -72,6 +72,8 @@ class EventApplicationResource extends Resource
                                             ->label('Uyku Tulumu Sayısı'),
                                         Forms\Components\TextInput::make('mat')
                                             ->label('Mat Sayısı'),
+                                        Forms\Components\TextInput::make('chair')
+                                            ->label('Sandalye Sayısı'),
                                         Forms\Components\Checkbox::make('dont_camping_equipment')
                                             ->label('Kamp Ekipmanı Temin Edilecek Mi?')
                                     ])
@@ -85,9 +87,9 @@ class EventApplicationResource extends Resource
                                         Forms\Components\TextInput::make('telescope_brand')
                                             ->label('Teleskop Markası'),
                                         Forms\Components\TextInput::make('swaddling')
-                                            ->label('Sallanan Koltuk Sayısı'),
+                                            ->label('Kundak Sayısı'),
                                         Forms\Components\TextInput::make('swaddling_brand')
-                                            ->label('Sallanan Koltuk Markası'),
+                                            ->label('Kundak Markası'),
                                         Forms\Components\TextInput::make('binocular')
                                             ->label('Dürbün Sayısı'),
                                         Forms\Components\TextInput::make('camera')
