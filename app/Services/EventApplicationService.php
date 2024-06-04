@@ -18,8 +18,9 @@ class EventApplicationService
         $user = User::query()->where('email', $data['email'])->first();
 
         $applicaton = null;
+        $group = null;
 
-        DB::transaction(function () use ($data, $eventId, $user, &$applicaton) {
+        DB::transaction(function () use ($data, $eventId, $user, &$applicaton, &$group) {
             if (!$user) {
                 $user = User::query()->create([
                     'name' => $data['full_name'],
@@ -68,6 +69,7 @@ class EventApplicationService
                 'city_id' => $data['city_id'],
                 'user_id' => $user['id'],
                 'event_id' => $eventId,
+                'group_id' => $group?->id,
             ]);
         });
 

@@ -7,6 +7,7 @@ import Step5 from "./steps/step5.jsx";
 import {IdentificationIcon} from "@heroicons/react/24/outline/index.js";
 import {Button} from "@codenteq/interfeys";
 import {router, useForm, usePage} from "@inertiajs/react";
+import MainLayout from "../Layouts/MainLayout.jsx";
 
 export default function EventApplicationForm({cities, event}) {
     const [step, setStep] = useState(1);
@@ -59,7 +60,7 @@ console.log(event)
     }, [errors]);
 
     return (
-        <main className="bg-image-galaxy h-screen w-screen">
+        <MainLayout>
             <div className="max-w-6xl mx-auto mb-9 md:mb-16">
                 <div className="py-24">
                     <div className="text-center pt-16">
@@ -132,6 +133,6 @@ console.log(event)
                 </form>
 
             </div>
-        </main>
+        </MainLayout>
     )
 }

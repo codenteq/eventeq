@@ -34,6 +34,12 @@ class EventApplicationResource extends Resource
                 Forms\Components\TextInput::make('phone')
                     ->label('Telefon')
                     ->disabled(),
+                Forms\Components\DateTimePicker::make('birth_date')
+                    ->label('Doğum Tarihi')
+                    ->required(),
+                Forms\Components\TextInput::make('job')
+                    ->label('Meslek')
+                    ->disabled(),
                 Forms\Components\Section::make()
                     ->columns([
                         'sm' => 3,
@@ -164,6 +170,7 @@ class EventApplicationResource extends Resource
                         $data['full_name'] = $user->name;
                         $data['email'] = $user->email;
                         $data['phone'] = $user->phone;
+                        $data['birth_date'] = $user->birth_date;
 
                         return $data;
                     })

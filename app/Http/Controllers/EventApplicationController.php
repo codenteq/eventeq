@@ -22,6 +22,13 @@ class EventApplicationController extends Controller
         ]);
     }
 
+    public function show(Event $event): \Inertia\Response|\Inertia\ResponseFactory
+    {
+        return inertia('EventDetail', [
+            'event' => $event->load('city'),
+        ]);
+    }
+
     public function store(StoreEventApplicationRequest $request,int $event): \Illuminate\Http\JsonResponse
     {
         $validated = $request->validated();

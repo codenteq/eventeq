@@ -52,9 +52,12 @@ export default function Step1({data, setData, cities}) {
                 <div>
                     <div className="mb-5">
                         <Select name="job" label="Mesleğiniz" defaultValue="Choose"
-                                value={data.job}
                                 className="block w-full"
-                                onChange={(e) => setData('job', e.target.value)}>
+                                onChange={(e) => {
+                                    setSelectedJob(e.target.value);
+                                    setData('job', e.target.value);
+                                }}
+                        >
                             {Jobs.map((job, index) => (
                                 <option key={index} value={job}>
                                     {job}
@@ -70,7 +73,6 @@ export default function Step1({data, setData, cities}) {
                                 type="text"
                                 label="Lütfen mesleğinizi belirtin"
                                 className="block w-full"
-                                value={data.job}
                                 onChange={(e) => setData('job', e.target.value)}
                             />
                         </div>
