@@ -129,20 +129,16 @@ class EventApplicationResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('city.name')
                     ->label('Şehir')
-                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('children_count')
                     ->counts('children')
                     ->label('Katılımcı Sayısı')
-                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Başvuru Tarihi')
-                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('check_in')
                     ->label('Giriş Yapılma Tarihi')
-                    ->searchable()
                     ->sortable(),
             ])
             ->defaultSort('id', 'desc')
