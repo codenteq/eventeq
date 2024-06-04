@@ -25,31 +25,35 @@ class EventResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255)
-                    ->label('Etkinliğin Adı'),
-                Forms\Components\Select::make('city_id')
-                    ->options(City::all()->pluck('name', 'id'))
-                    ->searchable()
-                    ->required()
-                    ->label('Şehir'),
-                Forms\Components\RichEditor::make('description')
-                    ->nullable()
-                    ->columnSpanFull()
-                    ->label('Etkinliğin Açıklaması'),
-                Forms\Components\DateTimePicker::make('start_date')
-                    ->required()
-                    ->label('Başlangıç Tarihi'),
-                Forms\Components\DateTimePicker::make('end_date')
-                    ->required()
-                    ->label('Bitiş Tarihi'),
-                Forms\Components\FileUpload::make('img')
-                    ->label('Resim')
-                    ->columnSpanFull()
-                    ->directory('events/')
-                    ->visibility('public')
-                    ->imageEditor(),
+                Forms\Components\Section::make('Event Information')
+                    ->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->required()
+                            ->maxLength(255)
+                            ->label('Etkinliğin Adı'),
+                        Forms\Components\Select::make('city_id')
+                            ->options(City::all()->pluck('name', 'id'))
+                            ->searchable()
+                            ->required()
+                            ->label('Şehir'),
+                        Forms\Components\RichEditor::make('description')
+                            ->nullable()
+                            ->columnSpanFull()
+                            ->label('Etkinliğin Açıklaması'),
+                        Forms\Components\DateTimePicker::make('start_date')
+                            ->required()
+                            ->label('Başlangıç Tarihi'),
+                        Forms\Components\DateTimePicker::make('end_date')
+                            ->required()
+                            ->label('Bitiş Tarihi'),
+                        Forms\Components\FileUpload::make('img')
+                            ->required()
+                            ->label('Resim')
+                            ->columnSpanFull()
+                            ->directory('events/')
+                            ->visibility('public')
+                            ->imageEditor(),
+                    ])
             ]);
     }
 
