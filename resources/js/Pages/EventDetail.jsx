@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import MainLayout from "../Layouts/MainLayout.jsx";
 import {Button} from "@codenteq/interfeys";
-import {Link} from "@inertiajs/react";
+import {Link, usePage} from "@inertiajs/react";
+import toast from "react-hot-toast";
 
 export default function EventDetail({event}) {
     console.log(event);
@@ -30,7 +31,7 @@ export default function EventDetail({event}) {
                         <p className="leading-relaxed text-sm mb-5 text-gray-600">
                             {event.city.name}
                         </p>
-                        <Link href={`/application/${event.id}`} className="mt-3">
+                        <Link href={`/applications/${event.id}`} className="mt-3">
                             <Button type="button" label="Başvur" className="w-full"/>
                         </Link>
                     </div>
