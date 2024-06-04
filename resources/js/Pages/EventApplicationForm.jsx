@@ -6,8 +6,9 @@ import Step4 from "./steps/step4.jsx";
 import Step5 from "./steps/step5.jsx";
 import {IdentificationIcon} from "@heroicons/react/24/outline/index.js";
 import {Button} from "@codenteq/interfeys";
-import {router, useForm, usePage} from "@inertiajs/react";
+import {useForm, usePage} from "@inertiajs/react";
 import MainLayout from "../Layouts/MainLayout.jsx";
+import toast from "react-hot-toast";
 
 export default function EventApplicationForm({cities, event}) {
     const [step, setStep] = useState(1);
@@ -52,12 +53,10 @@ console.log(event)
 
     function submit(e) {
         e.preventDefault()
-        router.post('/application/' + event.id, data)
+        post('/application/' + event.id, data)
+        toast.success('Başvurunuz başarıyla alındı.')
     }
 
-    useEffect(() => {
-        console.log("merhaba", errors)
-    }, [errors]);
 
     return (
         <MainLayout>

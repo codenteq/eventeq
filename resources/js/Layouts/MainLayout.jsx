@@ -1,8 +1,10 @@
 import {Link} from "@inertiajs/react";
+import {Toaster} from "react-hot-toast";
 
 const MainLayout = ({ children }) => {
     return (
         <div>
+            <Toaster />
             <header className="bg-gray-800 text-white p-4">
                 <div className="container mx-auto flex justify-between items-center">
                     <Link href="/public" className="text-lg font-bold">Eventeq</Link>

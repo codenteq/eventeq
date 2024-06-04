@@ -27,7 +27,7 @@ export default function EventDetail({event}) {
                         <p className="leading-relaxed mb-5 text-gray-600">
                         {event.start_date} - {event.end_date}
                         </p>
-                        <p className="leading-relaxed mb-5 text-gray-600">
+                        <p className="leading-relaxed text-sm mb-5 text-gray-600">
                             {event.city.name}
                         </p>
                         <Link href={`/application/${event.id}`} className="mt-3">

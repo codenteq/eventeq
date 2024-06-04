@@ -3,6 +3,7 @@ import {Button} from "@codenteq/interfeys";
 import MainLayout from "../Layouts/MainLayout.jsx";
 
 export default function Welcome({events}) {
+    console.log(events)
     return (
         <>
             <MainLayout>
@@ -29,9 +30,9 @@ export default function Welcome({events}) {
                                             </h5>
                                         </Link>
                                         <div className="flex-grow">
-                                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400"
-                                               dangerouslySetInnerHTML={{__html: event.description}}
-                                            />
+                                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                                📍{event?.city?.name}
+                                            </p>
                                         </div>
                                         <Link href={`/event/${event.id}`} className="mt-3">
                                             <Button type="button" label="Etkinliği incele" className="w-full"/>

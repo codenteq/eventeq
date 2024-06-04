@@ -18,7 +18,7 @@ class EventApplicationController extends Controller
     {
         return inertia('EventApplicationForm', [
             'cities' => City::all(),
-            'event' => $event,
+            'event' => $event->load('city')
         ]);
     }
 
@@ -29,14 +29,12 @@ class EventApplicationController extends Controller
         ]);
     }
 
-    public function store(StoreEventApplicationRequest $request,int $event): \Illuminate\Http\JsonResponse
+    public function store(StoreEventApplicationRequest $request,int $event): \Illuminate\Http\RedirectResponse
     {
         $validated = $request->validated();
 
         $this->eventApplicationService->create($validated, $event);
 
-        return response()->json([
-            'message' => 'Event application submitted successfully!',
-        ]);
+        return redirect()->route('event.show', $event);
     }
 }
