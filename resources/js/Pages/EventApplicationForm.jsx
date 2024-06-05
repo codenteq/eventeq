@@ -1,16 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Step1 from "./steps/step1.jsx";
 import Step2 from "./steps/step2.jsx";
 import Step3 from "./steps/step3.jsx";
 import Step4 from "./steps/step4.jsx";
 import Step5 from "./steps/step5.jsx";
-import {IdentificationIcon} from "@heroicons/react/24/outline/index.js";
-import {Button} from "@codenteq/interfeys";
-import {router, useForm, usePage} from "@inertiajs/react";
+import {ChevronDoubleRightIcon} from "@heroicons/react/24/outline/index.js";
+import {useForm, usePage} from "@inertiajs/react";
 import MainLayout from "../Layouts/MainLayout.jsx";
 import toast from "react-hot-toast";
+import { HeartIcon, StarIcon } from "@heroicons/react/24/outline/index.js";
+import {Accordion, AccordionBody, AccordionHeader, AccordionList, Button} from "@codenteq/interfeys";
 
-export default function EventApplicationForm({cities, event}) {
+export default function EventApplicationForm({ cities, event }) {
     const [step, setStep] = useState(1);
     const {errors, flash} = usePage().props
     const form = useForm({
@@ -66,51 +67,26 @@ export default function EventApplicationForm({cities, event}) {
         })
     }
 
-
     return (
         <MainLayout>
-            <div className="max-w-6xl mx-auto mb-9 md:mb-16">
-                <div className="py-24">
-                    <div className="text-center pt-16">
-                        <h3 className="text-3xl lg:text-6xl font-bold text-zinc-900 dark:text-zinc-50">
-                            {event.name}
-                        </h3>
-                    </div>
+            <section className="max-w-4xl mx-auto my-10 px-4">
+                <div className="py-10 text-center">
+                    <h3 className="text-2xl lg:text-4xl font-bold text-zinc-900 dark:text-zinc-50">
+                        {event.name}
+                    </h3>
                 </div>
-            </div>
+            </section>
 
-            <div className="flex flex-col max-w-4xl mx-auto backdrop-blur-md bg-white/35 rounded-lg p-7 gap-y-11 ">
-                <ol className="flex items-center w-full">
-                    <li className="flex w-full items-center after:w-full dark:after:border-zinc-800 after:h-1 after:border-b after:border-4 after:inline-block">
-                        <div
-                            className={`flex items-center justify-center ${step === 1 ? 'bg-blue-100 dark:bg-blue-800' : 'bg-zinc-100 dark:bg-zinc-700'} rounded-full h-12 w-12 shrink-0`}>
-                            <IdentificationIcon className="w-6 h-6 text-brand dark:text-white"/>
-                        </div>
-                    </li>
-                    <li className="flex w-full items-center after:w-full dark:after:border-zinc-800 after:h-1 after:border-b after:border-4 after:inline-block">
-                        <div
-                            className={`flex items-center justify-center ${step === 2 ? 'bg-blue-100 dark:bg-blue-800' : 'bg-zinc-100 dark:bg-zinc-700'} rounded-full h-12 w-12 shrink-0`}>
-                            <IdentificationIcon className="w-6 h-6 text-brand dark:text-white"/>
-                        </div>
-                    </li>
-                    <li className="flex w-full items-center after:w-full dark:after:border-zinc-800 after:h-1 after:border-b after:border-4 after:inline-block">
-                        <div
-                            className={`flex items-center justify-center ${step === 3 ? 'bg-blue-100 dark:bg-blue-800' : 'bg-zinc-100 dark:bg-zinc-700'} rounded-full h-12 w-12 shrink-0`}>
-                            <IdentificationIcon className="w-6 h-6 text-brand dark:text-white"/>
-                        </div>
-                    </li>
-                    <li className="flex w-full items-center after:w-full dark:after:border-zinc-800 after:h-1 after:border-b after:border-4 after:inline-block">
-                        <div
-                            className={`flex items-center justify-center ${step === 4 ? 'bg-blue-100 dark:bg-blue-800' : 'bg-zinc-100 dark:bg-zinc-700'} rounded-full h-12 w-12 shrink-0`}>
-                            <IdentificationIcon className="w-6 h-6 text-brand dark:text-white"/>
-                        </div>
-                    </li>
-                    <li className="flex items-center">
-                        <div
-                            className={`flex items-center justify-center ${step === 5 ? 'bg-blue-100 dark:bg-blue-800' : 'bg-zinc-100 dark:bg-zinc-700'} rounded-full h-12 w-12 shrink-0`}>
-                            <IdentificationIcon className="w-6 h-6 text-brand dark:text-white"/>
-                        </div>
-                    </li>
+            <section className="max-w-4xl mx-auto bg-white rounded-lg p-4 shadow-md mb-8">
+                <ol className="flex justify-between mb-6">
+                    {[1, 2, 3, 4, 5].map((index) => (
+                        <li key={index} className="w-full flex items-center justify-center">
+                            <div
+                                className={`rounded-full h-8 w-8 flex items-center justify-center ${step === index ? 'bg-blue-400 text-white' : 'bg-gray-300'}`}>
+                                <ChevronDoubleRightIcon className="w-4 h-4"/>
+                            </div>
+                        </li>
+                    ))}
                 </ol>
 
                 <div>
@@ -140,7 +116,93 @@ export default function EventApplicationForm({cities, event}) {
                     </div>
                 </form>
 
-            </div>
+            </section>
+
+            <section className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="relative bg-cover bg-[url('https://kommunity.com/img/cta1.jpg')] w-full h-80 md:h-full">
+                    <div className="absolute inset-0 bg-black opacity-50"></div>
+                    <div className="relative flex flex-col items-center md:items-start justify-center px-5 py-7 h-full">
+                        <StarIcon className="w-14 h-14 lg:w-22 lg:h-22 text-white mb-4"/>
+                        <h3 className="text-xl text-white md:text-2xl font-semibold mb-2">Codenteq'i ziyaret edin</h3>
+                        <p className="text-sm text-zinc-300 md:text-base">Açık kaynak topluluğumuzu ziyaret edin.</p>
+                        <a href="https://codenteq.com" target="_blank"
+                           className="text-sm text-white md:text-base underline mt-2">Ziyaret et</a>
+                    </div>
+                </div>
+                <div className="relative bg-cover bg-[url('https://kommunity.com/img/cta2.jpg')] w-full h-80 md:h-full">
+                    <div className="absolute inset-0 bg-black opacity-50"></div>
+                    <div className="relative flex flex-col items-center md:items-start justify-center px-5 py-7 h-full">
+                        <HeartIcon className="w-14 h-14 lg:w-22 lg:h-22 text-white mb-4"/>
+                        <h3 className="text-xl text-white md:text-2xl font-semibold mb-2">İmtihan</h3>
+                        <p className="text-sm text-zinc-300 md:text-base">Eğitim hayatınızı kolaylaştıran pratik bir
+                            platform.</p>
+                        <a href="https://imtihantech.com" target="_blank"
+                           className="text-sm text-white md:text-base underline mt-2">Ziyaret et</a>
+                    </div>
+                </div>
+            </section>
+
+            <section className="max-w-4xl mx-auto my-8 p-4">
+                <div className="bg-white rounded-lg shadow-md p-6">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-4">Sıkça Sorulan Sorular</h2>
+                    <div className="space-y-4">
+                        <AccordionList>
+                            <Accordion>
+                                <AccordionHeader>
+                                    Etkinliğe nasıl başvurabilirim?
+                                </AccordionHeader>
+                                <AccordionBody>
+                                    Etkinliğe başvurmak için genellikle etkinlik sayfasında bulunan başvuru formunu
+                                    doldurmanız gerekmektedir. Başvuru formunda gerekli bilgileri eksiksiz olarak
+                                    doldurduktan sonra başvurunuz tamamlanmış olacaktır.
+                                </AccordionBody>
+                            </Accordion>
+                            <Accordion>
+                                <AccordionHeader>
+                                    Başvurumu ne zaman yapmalıyım?
+                                </AccordionHeader>
+                                <AccordionBody>
+                                    Etkinlik başvuruları genellikle belirli bir tarihe kadar açıktır. Bu tarih, etkinlik
+                                    sayfasında veya başvuru formunda belirtilir. Başvuru tarihini kaçırmamak için
+                                    belirtilen tarihe kadar başvurunuzu tamamlamanız önemlidir.
+                                </AccordionBody>
+                            </Accordion>
+                            <Accordion>
+                                <AccordionHeader>
+                                    Başvurum onaylandığında ne olacak?
+                                </AccordionHeader>
+                                <AccordionBody>
+                                    Başvurunuz onaylandığında genellikle bir onay e-postası alırsınız. Bu e-postada
+                                    başvurunuzun onaylandığı ve etkinlikle ilgili önemli bilgilerin bulunduğu
+                                    belirtilir.
+                                </AccordionBody>
+                            </Accordion>
+                            <Accordion>
+                                <AccordionHeader>
+                                    Katılım için gerekenler nelerdir?
+                                </AccordionHeader>
+                                <AccordionBody>
+                                    Katılım için genellikle kayıt yapılması gerekmektedir. Bazı etkinlikler belirli bir
+                                    yaş sınırı veya tecrübe gerektirebilir. Ayrıntılı bilgi etkinlik sayfasında yer
+                                    almaktadır.
+                                </AccordionBody>
+                            </Accordion>
+                            <Accordion>
+                                <AccordionHeader>
+                                    Başvurum reddedilirse ne yapmalıyım?
+                                </AccordionHeader>
+                                <AccordionBody>
+                                    Başvurunuzun reddedilmesi durumunda genellikle size bir geri bildirim iletilir. Geri
+                                    bildirimde neden başvurunuzun reddedildiği ve gerekirse yeniden başvuru
+                                    yapabileceğiniz
+                                    bilgisi yer alır. Başvurunuzun reddedilmesi durumunda organizatörlerle iletişime
+                                    geçerek daha fazla bilgi alabilirsiniz.
+                                </AccordionBody>
+                            </Accordion>
+                        </AccordionList>
+                    </div>
+                </div>
+            </section>
         </MainLayout>
-    )
+    );
 }
