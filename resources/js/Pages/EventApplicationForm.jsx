@@ -13,6 +13,7 @@ import {Accordion, AccordionBody, AccordionHeader, AccordionList, Button} from "
 
 export default function EventApplicationForm({ cities, event }) {
     const [step, setStep] = useState(1);
+    const [participants, setParticipants] = useState([]);
     const {errors, flash} = usePage().props
     const form = useForm({
         full_name: null,
@@ -22,7 +23,7 @@ export default function EventApplicationForm({ cities, event }) {
         job: null,
         city_id: null,
         participants: [],
-        dont_camping_equipment: true,
+        dont_camping_equipment: false,
         tent: null,
         sleeping_bag: null,
         mat: null,
@@ -100,7 +101,7 @@ export default function EventApplicationForm({ cities, event }) {
                 <form onSubmit={submit} className="flex flex-col gap-y-11">
                     <div>
                         {step === 1 && <Step1 data={form.data} setData={form.setData} cities={cities}/>}
-                        {step === 2 && <Step2 data={form.data} setData={form.setData}/>}
+                        {step === 2 && <Step2 data={form.data} setData={form.setData} />}
                         {step === 3 && <Step3 data={form.data} setData={form.setData}/>}
                         {step === 4 && <Step4 data={form.data} setData={form.setData}/>}
                         {step === 5 && <Step5 data={form.data} setData={form.setData} event={event}/>}
@@ -118,7 +119,7 @@ export default function EventApplicationForm({ cities, event }) {
 
             </section>
 
-            <section className="grid grid-cols-1 md:grid-cols-2 gap-5">
+{/*            <section className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="relative bg-cover bg-[url('https://kommunity.com/img/cta1.jpg')] w-full h-80 md:h-full">
                     <div className="absolute inset-0 bg-black opacity-50"></div>
                     <div className="relative flex flex-col items-center md:items-start justify-center px-5 py-7 h-full">
@@ -140,7 +141,7 @@ export default function EventApplicationForm({ cities, event }) {
                            className="text-sm text-white md:text-base underline mt-2">Ziyaret et</a>
                     </div>
                 </div>
-            </section>
+            </section>*/}
 
             <section className="max-w-4xl mx-auto my-8 p-4">
                 <div className="bg-white rounded-lg shadow-md p-6">

@@ -2,9 +2,7 @@ import {Button, Input} from "@codenteq/interfeys";
 import React, {useEffect, useState} from "react";
 
 export default function Step2({data, setData}) {
-    const [participants, setParticipants] = useState([
-        { id: 1, full_name: '', birth_date: '' }
-    ]);
+    const [participants, setParticipants] = useState(data.participants);
 
     const handleParticipantChange = (id, event) => {
         const { name, value } = event.target;
@@ -42,6 +40,7 @@ export default function Step2({data, setData}) {
                         type="text"
                         label={`Katılımcı Tam Adı`}
                         className="block w-full"
+                        value={participant.full_name}
                         onChange={(event) => handleParticipantChange(participant.id, event)}
                     />
                     <Input
@@ -49,6 +48,7 @@ export default function Step2({data, setData}) {
                         type="date"
                         label={`Katılımcı Doğum Tarihi`}
                         className="block w-full"
+                        value={participant.birth_date}
                         onChange={(event) => handleParticipantChange(participant.id, event)}
                     />
                     {participants.length > 1 && (

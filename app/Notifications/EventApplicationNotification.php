@@ -38,6 +38,7 @@ class EventApplicationNotification extends Notification
 
         return (new MailMessage)
             ->subject('Etkinlikte Görüşmek Üzere ' . $this->eventName)
+            ->greeting('Merhaba ' . $this->name . '!')
             ->line('Harika haber, ' . $this->name . $this->eventName . ' etkinliğine gidiyorsunuz.')
             ->action('Etkinlik Detayları', url('/events/' . $this->eventId));
     }

@@ -2,7 +2,7 @@ import {Button, Input, Label} from "@codenteq/interfeys";
 import React, {useState} from "react";
 
 export default function Step3({data, setData}) {
-    const [dontCampingEquipment, setDontCampingEquipment] = useState(false);
+    const [dontCampingEquipment, setDontCampingEquipment] = useState(data.dont_camping_equipment);
 
     const handleDontCampingEquipmentChange = (event) => {
         setData('dont_camping_equipment', event.target.checked)

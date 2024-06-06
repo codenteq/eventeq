@@ -77,6 +77,7 @@ class StoreEventApplicationRequest extends FormRequest
             'participants.*.birth_date.required' => 'Katılımcıların doğum tarihi alanı gereklidir',
             'arrival_date.required' => 'Varış tarihi alanı gereklidir',
             'departure_date.required' => 'Ayrılış tarihi alanı gereklidir',
+            'city_id.required' => 'Şehir alanı gereklidir',
         ];
     }
 }
