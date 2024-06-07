@@ -1,4 +1,4 @@
-import {Button, Input, Label} from "@codenteq/interfeys";
+import {Input, Label} from "@codenteq/interfeys";
 import React, {useState} from "react";
 
 export default function Step3({data, setData}) {
@@ -11,6 +11,9 @@ export default function Step3({data, setData}) {
 
     return (
         <>
+            <div className="my-5">
+                <h3>Adım 3: Seyahat Bilgileri</h3>
+            </div>
             <div>
                 <div className="flex items-center gap-3 mb-6">
                     <Input

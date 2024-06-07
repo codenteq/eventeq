@@ -1,9 +1,12 @@
-import {Button, Input} from "@codenteq/interfeys";
+import {Input} from "@codenteq/interfeys";
 import React from "react";
 
 export default function Step4({data, setData}) {
     return (
         <>
+            <div className="my-5">
+                <h3>Adım 4: Ekipman Bilgileri</h3>
+            </div>
             <div className="grid gap-5 mb-6 lg:grid-cols-2">
                 <Input
                     name="telescope"
