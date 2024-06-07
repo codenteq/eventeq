@@ -1,4 +1,4 @@
-import {Button, Input, Select} from "@codenteq/interfeys";
+import {Input, Select} from "@codenteq/interfeys";
 import React, {useState} from "react";
 
 export default function Step1({data, setData, cities}) {
@@ -16,6 +16,9 @@ export default function Step1({data, setData, cities}) {
 
     return (
         <>
+            <div className="my-5">
+                <h3>Adım 1: Kişisel Bilgiler</h3>
+            </div>
             <div className="grid gap-5 mb-6 lg:grid-cols-2">
                 <Input
                     value={data.full_name}

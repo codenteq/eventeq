@@ -33,6 +33,9 @@ export default function Step2({data, setData}) {
 
     return (
         <>
+            <div className="my-5">
+                <h3>Adım 2: Katılımcı Bilgileri</h3>
+            </div>
             {participants.map((participant) => (
                 <div key={participant.id} className="grid gap-5 mb-6 lg:grid-cols-2 items-center">
                     <Input
@@ -53,7 +56,8 @@ export default function Step2({data, setData}) {
                     />
                     {participants.length > 1 && (
                         <div className="flex items-center">
-                            <button type="button" className="text-left text-red-600" onClick={() => handleRemoveParticipant(participant.id)}>
+                            <button type="button" className="text-left text-red-600"
+                                    onClick={() => handleRemoveParticipant(participant.id)}>
                                 Sil
                             </button>
                         </div>
@@ -62,7 +66,7 @@ export default function Step2({data, setData}) {
             ))}
             {participants.length < 5 && (
                 <div className="flex justify-end mb-6">
-                    <Button type="button" label="Katılımcı Ekle" onClick={handleAddParticipant} />
+                    <Button type="button" label="Katılımcı Ekle" onClick={handleAddParticipant}/>
                 </div>
             )}
         </>
