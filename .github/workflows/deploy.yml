@@ -19,7 +19,7 @@ jobs:
         php-version: 8.2
 
     - name: Install Composer dependencies
-      run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
+      run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
     - name: Build assets
       run: npm install && npm run build
