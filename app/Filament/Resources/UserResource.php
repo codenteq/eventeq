@@ -40,7 +40,8 @@ class UserResource extends Resource
                         Forms\Components\TextInput::make('password')
                             ->password()
                             ->required()
-                            ->hidden(fn (User $record) => $record?->exists)
+                            ->hiddenOn(['edit'])
+                            //->hidden(fn (User $record) => $record->exists)
                             ->maxLength(255)
                             ->label('Password'),
                     ]),
