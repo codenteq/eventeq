@@ -22,7 +22,7 @@ jobs:
       run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
 
     - name: Build assets
-      run: npm install && npm run production
+      run: npm install && npm run build
 
     - name: Deploy via FTP
       uses: SamKirkland/FTP-Deploy-Action@4.2.0
