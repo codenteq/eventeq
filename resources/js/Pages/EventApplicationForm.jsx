@@ -56,12 +56,6 @@ export default function EventApplicationForm({ cities, event }) {
         e.preventDefault()
         form.post('/applications/' + event.id, {
             data: form.data,
-            onSuccess: () => {
-                toast.success('Başvurunuz başarıyla alındı.')
-                setTimeout(() => {
-                    window.location.href = '/events/' + event.id
-                }, 2000);
-            },
             onError: () => {
                 toast.error('Bir hata oluştu. Lütfen tekrar deneyin.')
             }

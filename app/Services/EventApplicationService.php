@@ -71,7 +71,7 @@ class EventApplicationService
             ]);
         });
 
-        $user->notify(new EventApplicationNotification($eventId, $user->name, $application->event->name));
+        $user->notify(new EventApplicationNotification($application->id, $eventId, $user->name, $application->event->name));
 
         return $application;
     }

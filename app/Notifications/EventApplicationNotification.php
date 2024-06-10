@@ -15,7 +15,7 @@ class EventApplicationNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(private readonly int $eventId, private readonly string $name, private readonly string $eventName)
+    public function __construct(private readonly int $applicationId, private readonly int $eventId, private readonly string $name, private readonly string $eventName)
     {
         //
     }
@@ -40,7 +40,8 @@ class EventApplicationNotification extends Notification
             ->subject('Etkinlikte Görüşmek Üzere ' . $this->eventName)
             ->greeting('Merhaba ' . $this->name . '!')
             ->line('Harika haber, ' . $this->name . $this->eventName . ' etkinliğine gidiyorsunuz.')
-            ->action('Etkinlik Detayları', url('/events/' . $this->eventId));
+            ->action('Başvuru Detayları', url('/applications/' . $this->applicationId . '/success'))
+            ->action('Etlinlik Detayları', url('/events/' . $this->eventId));
     }
 
     /**
