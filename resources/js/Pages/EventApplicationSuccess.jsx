@@ -47,7 +47,7 @@ export default function EventApplicationSuccess({application}) {
                             className="text-gray-800 mb-6 md:mb-8">
                             Katılımcı Bilgileri
                         </h4>
-                        {application.group.child.map((child, index) => (
+                        {application?.group?.child?.map((child, index) => (
                             <div
                                 key={index}
                                 className="space-y-4 sm:space-y-2 rounded-lg border border-gray-100 bg-gray-50 p-6 mb-6 md:mb-8">
