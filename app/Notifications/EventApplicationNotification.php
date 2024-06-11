@@ -15,7 +15,13 @@ class EventApplicationNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(private readonly int $applicationId, private readonly int $eventId, private readonly string $name, private readonly string $eventName)
+    public function __construct(
+        private readonly int    $applicationId,
+        private readonly int    $eventId,
+        private readonly string $name,
+        private readonly string $eventName,
+        private readonly array  $attachments
+    )
     {
         //
     }
@@ -35,13 +41,12 @@ class EventApplicationNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-
         return (new MailMessage)
             ->subject('Etkinlikte Görüşmek Üzere ' . $this->eventName)
             ->greeting('Merhaba ' . $this->name . '!')
-            ->line('Harika haber, ' . $this->name . $this->eventName . ' etkinliğine gidiyorsunuz.')
-            ->action('Başvuru Detayları', url('/applications/' . $this->applicationId . '/success'))
-            ->action('Etlinlik Detayları', url('/events/' . $this->eventId));
+            ->line('Harika haber, ' . $this->name . ' ' . $this->eventName . ' etkinliğine gidiyorsunuz.')
+            ->action('Etlinlik Detayları', url('/events/' . $this->eventId))
+            ->attachMany($this->attachments);
     }
 
     /**

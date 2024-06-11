@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Jobs\AccessCardGenerate;
 use App\Models\EventApplication;
 use App\Models\Group;
 use App\Models\GroupChild;
@@ -71,7 +72,7 @@ class EventApplicationService
             ]);
         });
 
-        $user->notify(new EventApplicationNotification($application->id, $eventId, $user->name, $application->event->name));
+        AccessCardGenerate::dispatch($application->id);
 
         return $application;
     }
