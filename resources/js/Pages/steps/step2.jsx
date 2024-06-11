@@ -5,10 +5,10 @@ export default function Step2({data, setData}) {
     const [participants, setParticipants] = useState(data.participants);
 
     const handleParticipantChange = (id, event) => {
-        const { name, value } = event.target;
+        const {name, value} = event.target;
         const updatedParticipants = participants.map(participant => {
             if (participant.id === id) {
-                return { ...participant, [name]: value };
+                return {...participant, [name]: value};
             }
             return participant;
         });
@@ -18,7 +18,7 @@ export default function Step2({data, setData}) {
     const handleAddParticipant = () => {
         if (participants.length < 5) {
             const newId = participants.length + 1;
-            setParticipants([...participants, { id: newId, full_name: '', birth_date: '' }]);
+            setParticipants([...participants, {id: newId, full_name: '', birth_date: ''}]);
         }
     };
 
@@ -54,14 +54,12 @@ export default function Step2({data, setData}) {
                         value={participant.birth_date}
                         onChange={(event) => handleParticipantChange(participant.id, event)}
                     />
-                    {participants.length > 1 && (
-                        <div className="flex items-center">
-                            <button type="button" className="text-left text-red-600"
-                                    onClick={() => handleRemoveParticipant(participant.id)}>
-                                Sil
-                            </button>
-                        </div>
-                    )}
+                    <div className="flex items-center">
+                        <button type="button" className="text-left text-red-600"
+                                onClick={() => handleRemoveParticipant(participant.id)}>
+                            Sil
+                        </button>
+                    </div>
                 </div>
             ))}
             {participants.length < 5 && (
