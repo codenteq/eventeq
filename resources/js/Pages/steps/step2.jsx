@@ -34,7 +34,8 @@ export default function Step2({data, setData}) {
     return (
         <>
             <div className="my-5">
-                <h3>Adım 2: Katılımcı Bilgileri</h3>
+                <h3>Adım 2: Diğer Katılımcıların Bilgileri</h3>
+                <p>Grubunuzdaki kişileri buraya ekleyiniz. En fazla 5 katılımcı daha ekleyebilirsiniz.</p>
             </div>
             {participants.map((participant) => (
                 <div key={participant.id} className="grid gap-5 mb-6 lg:grid-cols-2 items-center">
@@ -48,8 +49,8 @@ export default function Step2({data, setData}) {
                     />
                     <Input
                         name={`birth_date`}
-                        type="date"
-                        label={`Katılımcı Doğum Tarihi`}
+                        type="number"
+                        label={`Katılımcı Doğum Yılı`}
                         className="block w-full"
                         value={participant.birth_date}
                         onChange={(event) => handleParticipantChange(participant.id, event)}

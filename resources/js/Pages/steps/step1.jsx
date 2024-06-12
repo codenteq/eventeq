@@ -17,7 +17,7 @@ export default function Step1({data, setData, cities}) {
     return (
         <>
             <div className="my-5">
-                <h3>Adım 1: Kişisel Bilgiler</h3>
+                <h3>Adım 1: Kişisel Bilgiler (Grup iseniz grup temsilcisinin bilgilerini giriniz)</h3>
             </div>
             <div className="grid gap-5 mb-6 lg:grid-cols-2">
                 <Input
@@ -48,8 +48,8 @@ export default function Step1({data, setData, cities}) {
                     name="birth_date"
                     value={data.birth_date}
                     onChange={(e) => setData('birth_date', e.target.value)}
-                    type="date"
-                    label="Doğum tarihiniz"
+                    type="number"
+                    label="Doğum Yılınız"
                     className="block w-full"
                 />
                 <div>
@@ -88,12 +88,27 @@ export default function Step1({data, setData, cities}) {
                         onChange={(e) => setData('city_id', e.target.value)}
                         label="Şehir"
                         className="w-full"
-                        placeholder="Choose">
+                        placeholder="Lütfen Şehir Seçiniz">
                         {cities.map((city, index) => (
                             <option key={index} value={city.id}>
                                 {city.name}
                             </option>
                         ))}
+                    </Select>
+                </div>
+                <div>
+                    <Select
+                        name="transportation"
+                        value={data.transportation}
+                        onChange={(e) => setData('transportation', e.target.value)}
+                        label="Etkinlik alanına ulaşımı nasıl sağlayacaksınız?"
+                        className="w-full">
+                        <option>
+                            Özel Araçla
+                        </option>
+                        <option>
+                            Toplu Taşıma
+                        </option>
                     </Select>
                 </div>
             </div>

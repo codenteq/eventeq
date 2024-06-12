@@ -12,7 +12,11 @@ export default function Step3({data, setData}) {
     return (
         <>
             <div className="my-5">
-                <h3>Adım 3: Seyahat Bilgileri</h3>
+                <h3>Adım 3: Kamp Malzemesi İhtiyaçları</h3>
+                <p className="mb-3">
+                    Kamp malzemesi fiyatlarını Organizasyon İletişim Linki üzerinden ulaşarak sorabilirsiniz.
+                </p>
+                <a href="https://sites.google.com/view/skyisderman/ileti%C5%9Fim?authuser=0" className="text-blue-300">https://sites.google.com/view/skyisderman/ileti%C5%9Fim?authuser=0</a>
             </div>
             <div>
                 <div className="flex items-center gap-3 mb-6">

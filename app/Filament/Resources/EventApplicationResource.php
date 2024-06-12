@@ -7,12 +7,15 @@ use App\Filament\Resources\EventApplicationResource\RelationManagers;
 use App\Models\Event;
 use App\Models\EventApplication;
 use App\Models\User;
+use Filament\Actions\Action;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use FontLib\TrueType\Collection;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class EventApplicationResource extends Resource
@@ -25,21 +28,24 @@ class EventApplicationResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('full_name')
-                    ->label('Adı Soyadı')
-                    ->disabled(),
-                Forms\Components\TextInput::make('email')
-                    ->label('E-Posta')
-                    ->disabled(),
-                Forms\Components\TextInput::make('phone')
-                    ->label('Telefon')
-                    ->disabled(),
-                Forms\Components\DateTimePicker::make('birth_date')
-                    ->label('Doğum Tarihi')
-                    ->required(),
+                Forms\Components\Group::make()
+                    ->relationship('user')
+                    ->columns(2)
+                    ->columnSpanFull()
+                    ->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->label('Adı Soyadı'),
+                        Forms\Components\TextInput::make('email')
+                            ->label('E-Posta'),
+                        Forms\Components\TextInput::make('phone')
+                            ->label('Telefon'),
+                        Forms\Components\DateTimePicker::make('birth_date')
+                            ->label('Doğum Tarihi'),
+                    ]),
                 Forms\Components\TextInput::make('job')
-                    ->label('Meslek')
-                    ->disabled(),
+                    ->label('Meslek'),
+                Forms\Components\TextInput::make('transportation')
+                    ->label('Etkinlik alanına ulaşımı nasıl sağlayacaksınız?'),
                 Forms\Components\Section::make()
                     ->columns([
                         'sm' => 3,
@@ -47,21 +53,6 @@ class EventApplicationResource extends Resource
                         '2xl' => 8,
                     ])
                     ->schema([
-                        Forms\Components\Section::make('Katılımcılar')
-                            ->schema([
-                                Forms\Components\Grid::make()
-                                    ->schema([
-                                        Forms\Components\Repeater::make('Katılımcılar')
-                                            ->relationship('children')
-                                            ->schema([
-                                                Forms\Components\TextInput::make('full_name')
-                                                    ->label('Adı Soyadı'),
-                                                Forms\Components\DateTimePicker::make('birth_date')
-                                                    ->label('Doğum Tarihi')
-                                                    ->required(),
-                                            ]),
-                                    ])
-                            ])->collapsed(),
                         Forms\Components\Section::make('Kamp Malzemesi İstekleri')
                             ->schema([
                                 Forms\Components\Grid::make()
@@ -107,8 +98,7 @@ class EventApplicationResource extends Resource
                     ->label('Geliş Tarihi'),
                 Forms\Components\DateTimePicker::make('departure_date')
                     ->label('Ayrılış Tarihi'),
-                Forms\Components\DateTimePicker::make('check_in')
-                    ->label('Giriş Yapılma Tarihi'),
+                Forms\Components\Checkbox::make('check_in'),
 
             ]);
     }
@@ -119,10 +109,6 @@ class EventApplicationResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('id')
                     ->label('Başvuru ID')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('event.name')
-                    ->label('Etkinlik Adı')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('user.name')
@@ -161,6 +147,18 @@ class EventApplicationResource extends Resource
                     ->label('Kamp Ekipmanı Temin Edilecek Mi?'),
             ])
             ->actions([
+                Tables\Actions\EditAction::make('Düzenle')
+                    ->mutateFormDataUsing(function (array $data): array {
+                        if ($data['check_in'] === true) {
+                            $data['check_in'] = now();
+                        } else {
+                            $data['check_in'] = null;
+                        }
+
+                        return $data;
+                    }),
+                Tables\Actions\DeleteAction::make('delete')
+                    ->modalHeading('Başvuruyu Sil'),
                 Tables\Actions\ViewAction::make()
                     ->mutateRecordDataUsing(function (array $data): array {
                         $user = User::find($data['user_id']);
@@ -172,6 +170,95 @@ class EventApplicationResource extends Resource
 
                         return $data;
                     })
+                    ->form([
+                        Forms\Components\TextInput::make('full_name')
+                            ->label('Adı Soyadı')
+                            ->disabled(),
+                        Forms\Components\TextInput::make('email')
+                            ->label('E-Posta')
+                            ->disabled(),
+                        Forms\Components\TextInput::make('phone')
+                            ->label('Telefon')
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('birth_date')
+                            ->label('Doğum Tarihi')
+                            ->required(),
+                        Forms\Components\TextInput::make('job')
+                            ->label('Meslek')
+                            ->disabled(),
+                        Forms\Components\TextInput::make('transportation')
+                            ->label('Etkinlik alanına ulaşımı nasıl sağlayacaksınız?')
+                            ->disabled(),
+                        Forms\Components\Section::make()
+                            ->columns([
+                                'sm' => 3,
+                                'xl' => 6,
+                                '2xl' => 8,
+                            ])
+                            ->schema([
+                                Forms\Components\Section::make('Katılımcılar')
+                                    ->schema([
+                                        Forms\Components\Grid::make()
+                                            ->schema([
+                                                Forms\Components\Repeater::make('Katılımcılar')
+                                                    ->relationship('children')
+                                                    ->schema([
+                                                        Forms\Components\TextInput::make('full_name')
+                                                            ->label('Adı Soyadı'),
+                                                        Forms\Components\DateTimePicker::make('birth_date')
+                                                            ->label('Doğum Tarihi')
+                                                            ->required(),
+                                                    ]),
+                                            ])
+                                    ])->collapsed(),
+                                Forms\Components\Section::make('Kamp Malzemesi İstekleri')
+                                    ->schema([
+                                        Forms\Components\Grid::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('tent')
+                                                    ->label('Çadır Sayısı'),
+                                                Forms\Components\TextInput::make('sleeping_bag')
+                                                    ->label('Uyku Tulumu Sayısı'),
+                                                Forms\Components\TextInput::make('mat')
+                                                    ->label('Mat Sayısı'),
+                                                Forms\Components\TextInput::make('chair')
+                                                    ->label('Sandalye Sayısı'),
+                                                Forms\Components\Checkbox::make('dont_camping_equipment')
+                                                    ->label('Kamp Ekipmanı Temin Edilecek Mi?')
+                                            ])
+                                    ])->collapsed(),
+                                Forms\Components\Section::make('Getirilecek Ekipmanlar')
+                                    ->schema([
+                                        Forms\Components\Grid::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('telescope')
+                                                    ->label('Teleskop Sayısı'),
+                                                Forms\Components\TextInput::make('telescope_brand')
+                                                    ->label('Teleskop Markası'),
+                                                Forms\Components\TextInput::make('swaddling')
+                                                    ->label('Kundak Sayısı'),
+                                                Forms\Components\TextInput::make('swaddling_brand')
+                                                    ->label('Kundak Markası'),
+                                                Forms\Components\TextInput::make('binocular')
+                                                    ->label('Dürbün Sayısı'),
+                                                Forms\Components\TextInput::make('camera')
+                                                    ->label('Kamera Sayısı'),
+                                                Forms\Components\TextInput::make('tripod')
+                                                    ->label('Tripod Sayısı'),
+                                                Forms\Components\TextInput::make('walkie_talkie')
+                                                    ->label('Telsiz Sayısı'),
+                                                Forms\Components\TextInput::make('computer')
+                                                    ->label('Bilgisayar Sayısı'),
+                                            ])
+                                    ])->collapsed(),
+                            ]),
+                        Forms\Components\DateTimePicker::make('arrival_date')
+                            ->label('Geliş Tarihi'),
+                        Forms\Components\DateTimePicker::make('departure_date')
+                            ->label('Ayrılış Tarihi'),
+                        Forms\Components\DateTimePicker::make('check_in')
+                            ->label('Giriş Yapılma Tarihi')
+                    ])
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

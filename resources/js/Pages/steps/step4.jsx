@@ -6,6 +6,7 @@ export default function Step4({data, setData}) {
         <>
             <div className="my-5">
                 <h3>Adım 4: Ekipman Bilgileri</h3>
+                <p>(Lütfen alana getirebileceğiniz ekipmanlardan bahsediniz.)</p>
             </div>
             <div className="grid gap-5 mb-6 lg:grid-cols-2">
                 <Input
@@ -14,7 +15,7 @@ export default function Step4({data, setData}) {
                     onChange={(e) => setData('telescope', e.target.value)}
                     type="number"
                     label="Teleskop"
-                    helpText="Kaç adet teleskop getirebilirsiniz?"
+                    helpText="Kaç adet teleskop getireceksiniz?"
                     className="block w-full"
                 />
                 <Input
@@ -31,7 +32,7 @@ export default function Step4({data, setData}) {
                     onChange={(e) => setData('swaddling', e.target.value)}
                     type="number"
                     label="Kundak"
-                    helpText="Kaç adet kundak getirebilirsiniz?"
+                    helpText="Kaç adet kundak getireceksiniz?"
                     className="block w-full"
                 />
                 <Input
@@ -46,7 +47,7 @@ export default function Step4({data, setData}) {
                     onChange={(e) => setData('binocular', e.target.value)}
                     type="number"
                     label="Dürbün"
-                    helpText="Kaç adet dürbün getirebilirsiniz?"
+                    helpText="Kaç adet dürbün getireceksiniz?"
                     className="block w-full"
                 />
                 <Input
@@ -55,7 +56,7 @@ export default function Step4({data, setData}) {
                     onChange={(e) => setData('camera', e.target.value)}
                     type="number"
                     label="Fotoğraf makinesi"
-                    helpText="Kaç adet fotoğraf makinesi getirebilirsiniz?"
+                    helpText="Kaç adet fotoğraf makinesi getireceksiniz?"
                     className="block w-full"
                 />
                 <Input
@@ -64,7 +65,7 @@ export default function Step4({data, setData}) {
                     onChange={(e) => setData('tripod', e.target.value)}
                     type="number"
                     label="Tripod"
-                    helpText="Kaç adet tripod getirebilirsiniz?"
+                    helpText="Kaç adet tripod getireceksiniz?"
                     className="block w-full"
                 />
                 <Input
@@ -73,7 +74,7 @@ export default function Step4({data, setData}) {
                     onChange={(e) => setData('walkie_talkie', e.target.value)}
                     type="number"
                     label="Telsiz"
-                    helpText="Kaç adet telsiz getirebilirsiniz?"
+                    helpText="Kaç adet telsiz getireceksiniz?"
                     className="block w-full"
                 />
                 <Input
@@ -82,7 +83,7 @@ export default function Step4({data, setData}) {
                     onChange={(e) => setData('computer', e.target.value)}
                     type="number"
                     label="Bilgisayar"
-                    helpText="Kaç adet bilgisayar getirebilirsiniz?"
+                    helpText="Kaç adet bilgisayar getireceksiniz?"
                     className="block w-full"
                 />
             </div>

@@ -8,6 +8,7 @@ use App\Models\Group;
 use App\Models\GroupChild;
 use App\Models\User;
 use App\Notifications\EventApplicationNotification;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +29,7 @@ class EventApplicationService
                     'email' => $data['email'],
                     'phone' => $data['phone'],
                     'password' => bcrypt(rand(100000, 999999)),
-                    'birth_date' => $data['birth_date'],
+                    'birth_date' => Carbon::createFromDate($data['birth_date'], 6, 1),
                 ]);
             }
 
@@ -42,13 +43,14 @@ class EventApplicationService
                     GroupChild::query()->create([
                         'group_id' => $group->id,
                         'full_name' => $participant['full_name'],
-                        'birth_date' => $participant['birth_date'],
+                        'birth_date' => Carbon::createFromDate($participant['birth_date'], 6, 1),
                     ]);
                 }
             }
 
             $application = EventApplication::query()->create([
                 'job' => $data['job'],
+                'transportation' => $data['transportation'],
                 'tent' => $data['tent'],
                 'sleeping_bag' => $data['sleeping_bag'],
                 'mat' => $data['mat'],

@@ -22,6 +22,7 @@ export default function EventApplicationForm({ cities, event }) {
         birth_date: null,
         job: null,
         city_id: null,
+        transportation: null,
         participants: [],
         dont_camping_equipment: false,
         tent: null,
@@ -54,6 +55,7 @@ export default function EventApplicationForm({ cities, event }) {
 
     function submit(e) {
         e.preventDefault()
+        console.log(form.data)
         form.post('/applications/' + event.id, {
             data: form.data,
             onError: () => {

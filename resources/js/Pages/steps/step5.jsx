@@ -1,4 +1,4 @@
-import {Input, Label, Modal} from "@codenteq/interfeys";
+import {Accordion, AccordionBody, AccordionHeader, AccordionList, Input, Label, Modal} from "@codenteq/interfeys";
 import React, {useState} from "react";
 
 export default function Step5({data, setData, event}) {
@@ -33,7 +33,7 @@ export default function Step5({data, setData, event}) {
                     className="block w-full"
                 />
             </div>
-            <div className="grid-cols-none flex items-center gap-3 mb-6">
+            <div className="grid-cols-none w-full flex items-center gap-3 mb-6">
                 <Input
                     name="privacy"
                     id="privacy"
@@ -44,7 +44,27 @@ export default function Step5({data, setData, event}) {
                     <button title="Okumak için tılayın." onClick={() => setIsOpen(true)} type={'button'}
                             className="underline">Aydınlatma Metnini
                     </button>
-                    {' '}okudum, kişisel verilerimin işlenmesini onaylıyorum.
+                    <AccordionList>
+                        <Accordion>
+                            <AccordionHeader>
+                                {' '}okudum, kişisel verilerimin işlenmesini onaylıyorum.
+                            </AccordionHeader>
+                            <AccordionBody>
+                                Kalebey Yerel Eylem Grubu Derneği tarafından düzenlenecek “Sandras Gökyüzü Gözlem
+                                Şenliğine” katılım için, 6698 Sayılı Kişisel Verilerin Korunması Kanunu’nun (“KVKK”)
+                                ilgili hükümlerine uygun olarak bilgime sunulan Aydınlatma Metninde yer alan
+                                açıklamaları, okudum, anladım, bilgilendirildim. Sandras Gökyüzü Gözlem Şenliği
+                                katılımcılarına ait verilerin, “KVKK Aydınlatma Metni”nde yer alan bilgiler ışığında,
+                                ilgili süreç kapsamında işlenme amacı ile sınırlı olmak üzere kullanılmasını, gereken
+                                süre zarfında saklanmasını ve bu hususta tarafıma gerekli aydınlatmanın yapıldığını ve
+                                Kalebey Yerel Eylem Grubu Derneği tarafından işlenmesine, muhafaza edilmesine ve
+                                aktarılmasına rıza gösterdiğimi beyan ediyorum. İşbu açık rıza metnini okudum ve
+                                anladım. Yukarıda yer alan hususlara bilerek ve isteyerek rıza gösterdiğimi beyan
+                                ederim. Kişisel verilerimin metinde belirtilen şekillerde işlenmesini ve aktarılmasını
+                                onaylıyorum ve izin veriyorum.
+                            </AccordionBody>
+                        </Accordion>
+                    </AccordionList>
                 </Label>
             </div>
 

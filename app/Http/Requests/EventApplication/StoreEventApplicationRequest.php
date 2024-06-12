@@ -25,8 +25,9 @@ class StoreEventApplicationRequest extends FormRequest
             'full_name' => ['required', 'string'],
             'email' => ['required', 'email'],
             'phone' => ['required', 'string'],
-            'birth_date' => ['required', 'date'],
+            'birth_date' => ['required', 'numeric'],
             'job' => ['required', 'string'],
+            'transportation' => ['string'],
             'tent' => ['numeric', 'nullable'],
             'sleeping_bag' => ['numeric', 'nullable'],
             'mat' => ['numeric', 'nullable'],
@@ -43,10 +44,10 @@ class StoreEventApplicationRequest extends FormRequest
             'computer' => ['numeric'],
             'participants' => ['array'],
             'participants.*.full_name' => ['string'],
-            'participants.*.birth_date' => ['date'],
+            'participants.*.birth_date' => ['numeric'],
             'arrival_date' => ['required', 'date'],
             'departure_date' => ['required', 'date'],
-            'city_id' => ['required', 'numeric', 'exists:cities,id'],
+            'city_id' => ['required', 'exists:cities,id'],
         ];
     }
 
@@ -58,6 +59,7 @@ class StoreEventApplicationRequest extends FormRequest
             'phone.required' => 'Telefon alanı gereklidir',
             'birth_date.required' => 'Doğum tarihi alanı gereklidir',
             'job.required' => 'İş alanı gereklidir',
+            'transportation.string' => 'Ulaşım alanı olmalıdır',
             'tent.numeric' => 'Çadır alanı bir sayı olmalıdır',
             'sleeping_bag.numeric' => 'Uyku tulumu alanı bir sayı olmalıdır',
             'mat.numeric' => 'Mat alanı bir sayı olmalıdır',
