@@ -56,9 +56,9 @@ export default function EventApplicationSuccess({application}) {
                                     <dd className="font-medium text-gray-900 sm:text-end">{child.full_name}</dd>
                                 </dl>
                                 <dl className="sm:flex items-center justify-between gap-4">
-                                    <dt className="font-normal mb-1 sm:mb-0 text-gray-500">Katılımcı Doğum Tarihi
+                                    <dt className="font-normal mb-1 sm:mb-0 text-gray-500">Katılımcı Doğum Yılı
                                     </dt>
-                                    <dd className="font-medium text-gray-900 sm:text-end">{child.birth_date}</dd>
+                                    <dd className="font-medium text-gray-900 sm:text-end">{new Date(child.birth_date).getFullYear()}</dd>
                                 </dl>
                             </div>
                         ))}

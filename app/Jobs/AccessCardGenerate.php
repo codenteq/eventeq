@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\EventApplication;
+use App\Notifications\EventAccessCardNotification;
 use App\Notifications\EventApplicationNotification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -60,7 +61,7 @@ class AccessCardGenerate implements ShouldQueue
         ];
         $pdf = Pdf::loadView('access-card', $data)->setPaper('a6');
 
-        $pdf->save(storage_path('app/public/access-card/'. $fileName));
+        $pdf->save(storage_path('app/public/access-card/' . $fileName));
         $attachments->push(public_path('storage/access-card/' . $fileName));
 
         $application?->children?->each(function ($child) use (&$application, &$data, &$attachments, $fileName) {
@@ -68,16 +69,16 @@ class AccessCardGenerate implements ShouldQueue
             $fileName = str()->slug($child->full_name) . '-' . $this->applicationId . '.pdf';
             $data['qrcode'] = base64_encode(QrCode::format('png')->size(180)->generate(route('application.success', $this->applicationId)));
             $pdf = Pdf::loadView('access-card', $data)->setPaper('a6');
-            $pdf->save(storage_path('app/public/access-card/'. $fileName));
+            $pdf->save(storage_path('app/public/access-card/' . $fileName));
             $attachments->push(public_path('storage/access-card/' . $fileName));
         });
 
-        $user->notify(new EventApplicationNotification(
-            $application->id,
-            $application->event->id,
-            $user->name,
-            $application?->event?->name,
-            $attachments->toArray())
+        $user->notify(new EventAccessCardNotification(
+                $application->id,
+                $user->name,
+                $application?->event?->name,
+                $attachments->toArray()
+            )
         );
     }
 }

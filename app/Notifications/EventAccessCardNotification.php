@@ -2,13 +2,12 @@
 
 namespace App\Notifications;
 
-use App\Models\EventApplication;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class EventApplicationNotification extends Notification implements ShouldQueue
+class EventAccessCardNotification extends Notification
 {
     use Queueable;
 
@@ -17,9 +16,9 @@ class EventApplicationNotification extends Notification implements ShouldQueue
      */
     public function __construct(
         private readonly int    $applicationId,
-        private readonly int    $eventId,
         private readonly string $name,
         private readonly string $eventName,
+        private readonly array  $attachments
     )
     {
         //
@@ -43,9 +42,9 @@ class EventApplicationNotification extends Notification implements ShouldQueue
         return (new MailMessage)
             ->subject('Etkinlikte Görüşmek Üzere ' . $this->eventName)
             ->greeting('Merhaba ' . $this->name . '!')
-            ->line('Harika haber, ' . $this->name . ' ' . $this->eventName . ' etkinliğine gidiyorsunuz.')
-            ->line('Etkinlikten bir hafta önce size bir check-in maili göndereceğiz. Check-in yapmayı unutmayınız!')
-            ->action('Başvuru Detayları', route('application.success', $this->applicationId));
+            ->line('Etkinlik başvurunuz onaylandı. Etkinlikte görüşmek üzere!')
+            ->action('Başvuru Detayları', route('application.success', $this->applicationId))
+            ->attachMany($this->attachments);
     }
 
     /**

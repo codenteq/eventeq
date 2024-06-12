@@ -2,25 +2,19 @@
 
 namespace App\Notifications;
 
-use App\Models\EventApplication;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class EventApplicationNotification extends Notification implements ShouldQueue
+class EventCheckInNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct(
-        private readonly int    $applicationId,
-        private readonly int    $eventId,
-        private readonly string $name,
-        private readonly string $eventName,
-    )
+    public function __construct(private readonly int $applicationId, private readonly string $eventName)
     {
         //
     }
@@ -41,11 +35,11 @@ class EventApplicationNotification extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Etkinlikte Görüşmek Üzere ' . $this->eventName)
-            ->greeting('Merhaba ' . $this->name . '!')
-            ->line('Harika haber, ' . $this->name . ' ' . $this->eventName . ' etkinliğine gidiyorsunuz.')
-            ->line('Etkinlikten bir hafta önce size bir check-in maili göndereceğiz. Check-in yapmayı unutmayınız!')
-            ->action('Başvuru Detayları', route('application.success', $this->applicationId));
+            ->subject('Etkinlik Check-in')
+            ->greeting('Merhaba!')
+            ->line($this->eventName . ' etkinliğine başvuru yaptınız. Etkinliğe gelmeyi düşünüyorsanız aşağıdaki linke tıklayarak check-in yapmalısınız. Aksi takdirde etkinliğe katılamayacaksınız.')
+            ->line('Check-in sonrası giriş kartınızı alabilirsiniz.')
+            ->action('Check in yap', route('application.check-in', $this->applicationId));
     }
 
     /**

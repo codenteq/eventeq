@@ -17,6 +17,7 @@ return [
     'hello' => 'Merhaba!',
     'regards' => 'Saygılarımızla',
     'Regards' => 'Saygılarımızla',
+    'Regards' => 'Saygılarımızla',
     'trouble' => 'Eğer ":actionText" butonuna tıklamakta sorun yaşıyorsanız, aşağıdaki URL\'yi kopyalayıp web tarayıcınızın adres çubuğuna yapıştırarak da işlemi tamamlayabilirsiniz:',
     'all_rights_reserved' => 'Tüm hakları saklıdır.',
 

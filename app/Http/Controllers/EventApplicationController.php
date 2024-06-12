@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EventApplication\StoreEventApplicationRequest;
+use App\Http\Requests\EventApplication\UpdateEventApplicationRequest;
+use App\Jobs\AccessCardGenerate;
 use App\Models\City;
 use App\Models\Event;
 use App\Models\EventApplication;
@@ -39,10 +41,39 @@ class EventApplicationController extends Controller
         return redirect()->route('application.success', $application);
     }
 
+    public function update(UpdateEventApplicationRequest $request, EventApplication $eventApplication): \Illuminate\Http\RedirectResponse
+    {
+        $validated = $request->validated();
+
+        $this->eventApplicationService->update($validated, $eventApplication);
+
+        return redirect()->route('application.success', $eventApplication);
+    }
+
     public function success(EventApplication $eventApplication): \Inertia\Response|\Inertia\ResponseFactory
     {
         return inertia('EventApplicationSuccess', [
             'application' => $eventApplication->load(['user','event', 'group.child'])
         ]);
+    }
+
+    public function checkIn(EventApplication $eventApplication): \Inertia\Response|\Inertia\ResponseFactory
+    {
+        return inertia('EventApplicationForm', [
+            'cities' => City::all(),
+            'event' => Event::find($eventApplication->event_id),
+            'application' => $eventApplication->load(['user','event', 'children'])
+        ]);
+    }
+
+    public function checkInStore(EventApplication $eventApplication): \Illuminate\Http\RedirectResponse
+    {
+        $eventApplication->update([
+            'check_in' => now()
+        ]);
+
+        AccessCardGenerate::dispatch($eventApplication->id);
+
+        return redirect()->route('application.success', $eventApplication);
     }
 }

@@ -6,6 +6,7 @@ use App\Filament\Resources\EventResource\Pages;
 use App\Filament\Resources\EventResource\RelationManagers;
 use App\Models\City;
 use App\Models\Event;
+use App\Services\EventApplicationService;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Components\Tab;
@@ -13,6 +14,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class EventResource extends Resource
@@ -85,7 +87,11 @@ class EventResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\ViewAction::make(),
-                Tables\Actions\DeleteAction::make()
+                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\Action::make('Check-in', 'check-in')
+                    ->requiresConfirmation()
+                    ->modalDescription('Etkinliğe kaydolan herkese mail gönderilecek. Onaylıyor musunuz?')
+                    ->action(fn (Model $record, EventApplicationService $applicationService) => $applicationService->checkIn($record->id))
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

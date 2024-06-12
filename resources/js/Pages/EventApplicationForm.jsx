@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Step1 from "./steps/step1.jsx";
 import Step2 from "./steps/step2.jsx";
 import Step3 from "./steps/step3.jsx";
@@ -11,35 +11,36 @@ import toast from "react-hot-toast";
 import { HeartIcon, StarIcon } from "@heroicons/react/24/outline/index.js";
 import {Accordion, AccordionBody, AccordionHeader, AccordionList, Button} from "@codenteq/interfeys";
 
-export default function EventApplicationForm({ cities, event }) {
+export default function EventApplicationForm({ cities, event, application = null}) {
     const [step, setStep] = useState(1);
     const [participants, setParticipants] = useState([]);
     const {errors, flash} = usePage().props
+
     const form = useForm({
-        full_name: null,
-        email: null,
-        phone: null,
-        birth_date: null,
-        job: null,
-        city_id: null,
-        transportation: null,
+        full_name: application?.user?.name || null,
+        email: application?.user?.email || null,
+        phone: application?.user?.phone || null,
+        birth_date: new Date(application?.user?.birth_date).getFullYear() || null,
+        job: application?.job || null,
+        city_id: application?.city_id || null,
+        transportation: application?.transportation || null,
         participants: [],
-        dont_camping_equipment: false,
-        tent: null,
-        sleeping_bag: null,
-        mat: null,
-        chair: null,
-        telescope: 0,
-        telescope_brand: null,
-        swaddling: 0,
-        swaddling_brand: null,
-        binocular: 0,
-        camera: 0,
-        tripod: 0,
-        walkie_talkie: 0,
-        computer: 0,
-        arrival_date: null,
-        departure_date: null,
+        dont_camping_equipment: application?.dont_camping_equipment || null,
+        tent: application?.tent || null,
+        sleeping_bag: application?.sleeping_bag || null,
+        mat: application?.mat || null,
+        chair: application?.chair || null,
+        telescope: application?.telescope || 0,
+        telescope_brand: application?.telescope_brand || null,
+        swaddling: application?.swaddling || 0,
+        swaddling_brand: application?.swaddling_brand || null,
+        binocular: application?.binocular || 0,
+        camera: application?.camera || 0,
+        tripod: application?.tripod || 0,
+        walkie_talkie: application?.walkie_talkie || 0,
+        computer: application?.computer || 0,
+        arrival_date: application?.arrival_date || null,
+        departure_date: application?.departure_date || null,
         event_id: event.id
     })
 
@@ -55,14 +56,43 @@ export default function EventApplicationForm({ cities, event }) {
 
     function submit(e) {
         e.preventDefault()
-        console.log(form.data)
-        form.post('/applications/' + event.id, {
-            data: form.data,
+        if (application) {
+            form.put('/applications/' + application.id, {
+                data: form.data,
+                onError: () => {
+                    toast.error('Bir hata oluştu. Lütfen tekrar deneyin.')
+                }
+            })
+        } else {
+            form.post('/applications/' + event.id, {
+                data: form.data,
+                onError: () => {
+                    toast.error('Bir hata oluştu. Lütfen tekrar deneyin.')
+                }
+            })
+        }
+    }
+
+    function checkIn() {
+        form.patch(`/applications/${application.id}/check-in`, {
             onError: () => {
                 toast.error('Bir hata oluştu. Lütfen tekrar deneyin.')
             }
         })
     }
+
+    useEffect(() => {
+        if (application) {
+            console.log(application)
+            application?.children?.map((child) => {
+                form.data.participants.push({
+                    id: child.id,
+                    full_name: child.full_name,
+                    birth_date: new Date(child.birth_date).getFullYear()
+                })
+            });
+        }
+    }, [application]);
 
     return (
         <MainLayout>
@@ -97,7 +127,7 @@ export default function EventApplicationForm({ cities, event }) {
                 <form onSubmit={submit} className="flex flex-col gap-y-11">
                     <div>
                         {step === 1 && <Step1 data={form.data} setData={form.setData} cities={cities}/>}
-                        {step === 2 && <Step2 data={form.data} setData={form.setData} />}
+                        {step === 2 && <Step2 data={form.data} setData={form.setData}/>}
                         {step === 3 && <Step3 data={form.data} setData={form.setData}/>}
                         {step === 4 && <Step4 data={form.data} setData={form.setData}/>}
                         {step === 5 && <Step5 data={form.data} setData={form.setData} event={event}/>}
@@ -112,10 +142,16 @@ export default function EventApplicationForm({ cities, event }) {
                             )}
                     </div>
                 </form>
-
+                {application&& (
+                    <div className="flex flex-col gap-5 justify-center mt-10 mb-10">
+                        <p className="text-center">Eğer bilgilerinizde bir değişiklik var ise yukarıdaki form'dan bilgilerinizi
+                            güncelleyiniz. Bilgilerinizde bir değişiklik yoksa aşağıdaki butonu kullanaraks hızlı onay yapabilirsiniz. </p>
+                        <Button type="button" label="Check In Onayla" onClick={checkIn}/>
+                    </div>
+                )}
             </section>
 
-{/*            <section className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {/*            <section className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="relative bg-cover bg-[url('https://kommunity.com/img/cta1.jpg')] w-full h-80 md:h-full">
                     <div className="absolute inset-0 bg-black opacity-50"></div>
                     <div className="relative flex flex-col items-center md:items-start justify-center px-5 py-7 h-full">

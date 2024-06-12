@@ -7,7 +7,6 @@ use App\Filament\Resources\EventApplicationResource\RelationManagers;
 use App\Models\Event;
 use App\Models\EventApplication;
 use App\Models\User;
-use Filament\Actions\Action;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -110,6 +109,12 @@ class EventApplicationResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->headerActions([
+                Tables\Actions\Action::make('create')
+                    ->label('Başvuru Oluştur')
+                    ->url(fn (): string => route('application.index', Event::first()->id))
+                    ->openUrlInNewTab()
+            ])
             ->columns([
                 Tables\Columns\TextColumn::make('id')
                     ->label('Başvuru ID')
@@ -148,7 +153,7 @@ class EventApplicationResource extends Resource
                     ->label('Kamp Ekipmanı Temin Edilecek Mi?'),
             ])
             ->actions([
-                Tables\Actions\EditAction::make('Düzenle')
+                Tables\Actions\EditAction::make('Düzenle / Check-in')
                     ->mutateFormDataUsing(function (array $data): array {
                         if ($data['check_in'] === true) {
                             $data['check_in'] = now();
