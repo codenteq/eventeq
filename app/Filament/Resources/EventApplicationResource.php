@@ -44,8 +44,12 @@ class EventApplicationResource extends Resource
                     ]),
                 Forms\Components\TextInput::make('job')
                     ->label('Meslek'),
-                Forms\Components\TextInput::make('transportation')
-                    ->label('Etkinlik alanına ulaşımı nasıl sağlayacaksınız?'),
+                Forms\Components\Select::make('transportation')
+                    ->label('Etkinlik alanına ulaşımı nasıl sağlayacaksınız?')
+                    ->options([
+                        'Özel Araçla' => 'Özel Araçla',
+                        'Toplu Taşıma' => 'Toplu Taşıma',
+                    ]),
                 Forms\Components\Section::make()
                     ->columns([
                         'sm' => 3,
@@ -121,9 +125,6 @@ class EventApplicationResource extends Resource
                 Tables\Columns\TextColumn::make('children_count')
                     ->counts('children')
                     ->label('Katılımcı Sayısı')
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label('Başvuru Tarihi')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('check_in')
                     ->label('Giriş Yapılma Tarihi')
