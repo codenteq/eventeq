@@ -102,7 +102,8 @@ export default function Step1({data, setData, cities}) {
                         value={data.transportation}
                         onChange={(e) => setData('transportation', e.target.value)}
                         label="Etkinlik alanına ulaşımı nasıl sağlayacaksınız?"
-                        className="w-full">
+                        className="w-full"
+                        placeholder="Lütfen Ulaşım Aranıcınızı Seçiniz">
                         <option>
                             Özel Araçla
                         </option>

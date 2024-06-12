@@ -25,7 +25,7 @@ export default function EventApplicationForm({ cities, event, application = null
         city_id: application?.city_id || null,
         transportation: application?.transportation || null,
         participants: [],
-        dont_camping_equipment: application?.dont_camping_equipment || null,
+        dont_camping_equipment: application?.dont_camping_equipment || false,
         tent: application?.tent || null,
         sleeping_bag: application?.sleeping_bag || null,
         mat: application?.mat || null,
