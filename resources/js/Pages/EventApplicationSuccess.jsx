@@ -10,10 +10,10 @@ export default function EventApplicationSuccess({application}) {
                     <h2 className="text-xl font-semibold text-green-500 sm:text-2xl mb-2">
                         Başarılı bir şekilde kaydınız gerçekleştirildi
                     </h2>
-                    <h3 className="text-blue-400">
+                    <h3 className="text-green-500">
                         Başvuru Numaranız : {application?.id}
                     </h3>
-                    <p className="text-blue-400">
+                    <p className="text-blue-500 font-semibold">
                         Lütfen Başvuru numaranızı Check-in sırasında kullanmak saklayınız.  Size bu numara eposta ile de gönderilmiştir.
                     </p>
                     <div>
