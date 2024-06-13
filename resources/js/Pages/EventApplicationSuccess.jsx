@@ -32,10 +32,10 @@ export default function EventApplicationSuccess({application}) {
                                 <dt className="font-normal mb-1 sm:mb-0 text-gray-500">Meslek</dt>
                                 <dd className="font-medium text-gray-900 sm:text-end">{application.job}</dd>
                             </dl>
-                            <dl className="sm:flex items-center justify-between gap-4">
+{/*                            <dl className="sm:flex items-center justify-between gap-4">
                                 <dt className="font-normal mb-1 sm:mb-0 text-gray-500">Varış Tarihi</dt>
                                 <dd className="font-medium text-gray-900 sm:text-end">{application.arrival_date}</dd>
-                            </dl>
+                            </dl>*/}
                             <dl className="sm:flex items-center justify-between gap-4">
                                 <dt className="font-normal mb-1 sm:mb-0 text-gray-500">Ayrılış Tarihi</dt>
                                 <dd className="font-medium text-gray-900 sm:text-end">{application.departure_date}</dd>
