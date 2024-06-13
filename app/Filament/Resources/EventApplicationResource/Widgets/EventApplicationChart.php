@@ -15,12 +15,17 @@ class EventApplicationChart extends ChartWidget
 
         Event::all()->each(function (Event $event) use ($applicationStatistics) {
             $applicationStatistics->push([
-                'label' => $event->name,
+                'label' => str()->limit($event->name, 35),
                 'data' => [$event->applications()->count()],
             ]);
         });
 
-        $events = Event::query()->pluck('name')->toArray();
+        $events = Event::query()
+            ->pluck('name')
+            ->map(function ($name) {
+                return str()->limit($name, 35);
+            })
+            ->toArray();
 
         return [
             'datasets' => [
