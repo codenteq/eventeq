@@ -9,25 +9,21 @@ export default function Step5({data, setData, event}) {
             <div className="my-5">
                 <h3>Adım 5: Seyahat Bilgileri</h3>
             </div>
-            <div className="grid gap-5 mb-6">
-{/*                <Input
+            <div className="grid gap-5 mb-6 lg:grid-cols-2">
+                <Input
                     name="arrival_date"
                     value={data.arrival_date}
                     onChange={(e) => setData('arrival_date', e.target.value)}
                     type="date"
-                    min={event.start_date}
-                    max={event.end_date}
                     label="Varış tarihi"
                     className="block w-full"
                     required
-                />*/}
+                />
                 <Input
                     name="departure_date"
                     value={data.departure_date}
                     onChange={(e) => setData('departure_date', e.target.value)}
                     type="date"
-                    min={event.start_date}
-                    max={event.end_date}
                     required
                     label="Ayrılış tarihi"
                     className="block w-full"

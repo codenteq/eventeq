@@ -45,7 +45,7 @@ class UpdateEventApplicationRequest extends FormRequest
             'participants' => ['array'],
             'participants.*.full_name' => ['string'],
             'participants.*.birth_date' => ['numeric'],
-            /*'arrival_date' => ['date'],*/
+            'arrival_date' => ['date'],
             'departure_date' => ['date'],
             'city_id' => ['exists:cities,id'],
         ];
@@ -77,7 +77,7 @@ class UpdateEventApplicationRequest extends FormRequest
             'participants.array' => 'Katılımcılar alanı bir dizi olmalıdır',
             'participants.*.full_name.required' => 'Katılımcıların ad soyad alanı gereklidir',
             'participants.*.birth_date.required' => 'Katılımcıların doğum tarihi alanı gereklidir',
-            /*'arrival_date.required' => 'Varış tarihi alanı gereklidir',*/
+            'arrival_date.required' => 'Varış tarihi alanı gereklidir',
             'departure_date.required' => 'Ayrılış tarihi alanı gereklidir',
             'city_id.required' => 'Şehir alanı gereklidir',
         ];
