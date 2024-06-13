@@ -129,6 +129,9 @@ class EventApplicationResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('children_count')
                     ->counts('children')
+                    ->formatStateUsing(function (int $state): string {
+                        return $state + 1;
+                    })
                     ->label('Katılımcı Sayısı')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('check_in')
