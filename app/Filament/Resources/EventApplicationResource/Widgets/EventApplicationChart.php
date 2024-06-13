@@ -22,8 +22,6 @@ class EventApplicationChart extends ChartWidget
 
         $events = Event::query()->pluck('name')->toArray();
 
-        info($applicationStatistics);
-
         return [
             'datasets' => [
                 ...$applicationStatistics,
