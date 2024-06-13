@@ -14,9 +14,12 @@ export default function Step3({data, setData}) {
             <div className="my-5">
                 <h3>Adım 3: Kamp Malzemesi İhtiyaçları</h3>
                 <p className="mb-3">
-                    Kamp malzemesi fiyatlarını Organizasyon İletişim Linki üzerinden ulaşarak sorabilirsiniz.
+                    Kamp malzemesi fiyatlarını Organizasyon İletişim Linki üzerinden ulaşarak sorarak ayırtmanız
+                    gerekmektedir. Bu formda yazacağınız ihtiyaç listesi organizasyonun sağlıklı işlemesi açısından
+                    önemlidir. Lütfen ihtiyaç listenizi belirtip iletişim kanallarından rezervasyon yaptırınız.
                 </p>
-                <a href="https://sites.google.com/view/skyisderman/ileti%C5%9Fim?authuser=0" className="text-blue-300">https://sites.google.com/view/skyisderman/ileti%C5%9Fim?authuser=0</a>
+                <a href="https://sites.google.com/view/skyisderman/ileti%C5%9Fim?authuser=0"
+                   className="text-blue-300">https://sites.google.com/view/skyisderman/ileti%C5%9Fim?authuser=0</a>
             </div>
             <div>
                 <div className="flex items-center gap-3 mb-6">
