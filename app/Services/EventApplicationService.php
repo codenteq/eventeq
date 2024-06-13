@@ -66,7 +66,7 @@ class EventApplicationService
                 'tripod' => $data['tripod'],
                 'walkie_talkie' => $data['walkie_talkie'],
                 'computer' => $data['computer'],
-                'arrival_date' => $data['arrival_date'],
+                /*'arrival_date' => $data['arrival_date'],*/
                 'departure_date' => $data['departure_date'],
                 'city_id' => $data['city_id'],
                 'user_id' => $user['id'],
@@ -105,7 +105,7 @@ class EventApplicationService
             'tripod' => $data['tripod'],
             'walkie_talkie' => $data['walkie_talkie'],
             'computer' => $data['computer'],
-            'arrival_date' => $data['arrival_date'],
+            /*'arrival_date' => $data['arrival_date'],*/
             'departure_date' => $data['departure_date'],
             'city_id' => $data['city_id'],
             'check_in' => now()
