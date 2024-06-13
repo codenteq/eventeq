@@ -39,7 +39,7 @@ export default function EventApplicationForm({ cities, event, application = null
         tripod: application?.tripod || 0,
         walkie_talkie: application?.walkie_talkie || 0,
         computer: application?.computer || 0,
-        arrival_date: application?.arrival_date || null,
+        //arrival_date: application?.arrival_date || null,
         departure_date: application?.departure_date || null,
         event_id: event.id
     })

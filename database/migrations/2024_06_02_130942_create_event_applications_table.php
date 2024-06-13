@@ -27,7 +27,7 @@ return new class extends Migration {
             $table->integer('tripod');
             $table->integer('walkie_talkie');
             $table->integer('computer');
-            $table->date('arrival_date');
+            $table->date('arrival_date')->nullable();
             $table->date('departure_date');
             $table->date('check_in')->nullable();
             $table->foreignIdFor(\App\Models\Group::class)->nullable();
