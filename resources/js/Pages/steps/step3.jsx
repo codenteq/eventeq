@@ -19,7 +19,7 @@ export default function Step3({data, setData}) {
                     önemlidir. Lütfen ihtiyaç listenizi belirtip iletişim kanallarından rezervasyon yaptırınız.
                 </p>
                 <a href="https://sites.google.com/view/skyisderman/ileti%C5%9Fim?authuser=0"
-                   className="text-blue-300">https://sites.google.com/view/skyisderman/ileti%C5%9Fim?authuser=0</a>
+                   className="text-blue-300" target="_blank">https://sites.google.com/view/skyisderman/ileti%C5%9Fim?authuser=0</a>
             </div>
             <div>
                 <div className="flex items-center gap-3 mb-6">
