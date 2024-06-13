@@ -45,7 +45,7 @@ class StoreEventApplicationRequest extends FormRequest
             'participants' => ['array'],
             'participants.*.full_name' => ['string'],
             'participants.*.birth_date' => ['numeric'],
-            'arrival_date' => ['required', 'date'],
+            /*'arrival_date' => ['required', 'date'],*/
             'departure_date' => ['required', 'date'],
             'city_id' => ['required', 'exists:cities,id'],
         ];
@@ -77,7 +77,7 @@ class StoreEventApplicationRequest extends FormRequest
             'participants.array' => 'Katılımcılar alanı bir dizi olmalıdır',
             'participants.*.full_name.required' => 'Katılımcıların ad soyad alanı gereklidir',
             'participants.*.birth_date.required' => 'Katılımcıların doğum tarihi alanı gereklidir',
-            'arrival_date.required' => 'Varış tarihi alanı gereklidir',
+            /*'arrival_date.required' => 'Varış tarihi alanı gereklidir',*/
             'departure_date.required' => 'Ayrılış tarihi alanı gereklidir',
             'city_id.required' => 'Şehir alanı gereklidir',
         ];
