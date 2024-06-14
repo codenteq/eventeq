@@ -117,7 +117,8 @@ export default function EventApplicationForm({ cities, event, application = null
                     {[1, 2, 3, 4, 5].map((index) => (
                         <li key={index} className="w-full flex items-center justify-center">
                             <div
-                                className={`rounded-full h-8 w-8 flex items-center justify-center ${step === index ? 'bg-blue-400 text-white' : 'bg-gray-300'}`}>
+                                onClick={() => setStep(index)}
+                                className={`rounded-full h-8 w-8 flex items-center cursor-pointer justify-center ${step === index ? 'bg-blue-400 text-white' : 'bg-gray-300'}`}>
                                 <ChevronDoubleRightIcon className="w-4 h-4"/>
                             </div>
                         </li>
