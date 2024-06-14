@@ -94,6 +94,14 @@ export default function EventApplicationForm({ cities, event, application = null
         }
     }, [application]);
 
+    useEffect(() => {
+        const validParticipants = form.data.participants.filter(participant => {
+            return participant.full_name !== '' && participant.birth_date !== '';
+        });
+
+        form.setData('participants', validParticipants);
+    }, [form.data.participants]);
+
     return (
         <MainLayout>
             <section className="max-w-4xl mx-auto my-10 px-4">
