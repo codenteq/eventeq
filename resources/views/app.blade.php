@@ -23,6 +23,17 @@
     <link rel="icon" href="https://codenteq.com/wp-content/uploads/2022/11/cropped-favicon-32x32.webp" sizes="32x32" />
     <link rel="icon" href="https://codenteq.com/wp-content/uploads/2022/11/cropped-favicon-192x192.webp" sizes="192x192" />
     <link rel="apple-touch-icon" href="https://codenteq.com/wp-content/uploads/2022/11/cropped-favicon-180x180.webp" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4QYYJCTZZZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-4QYYJCTZZZ');
+    </script>
+
     @viteReactRefresh
     @vite(['resources/css/app.css', 'resources/js/app.jsx'])
     @inertiaHead
