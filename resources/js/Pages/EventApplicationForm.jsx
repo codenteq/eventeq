@@ -8,12 +8,11 @@ import {ChevronDoubleRightIcon} from "@heroicons/react/24/outline/index.js";
 import {useForm, usePage} from "@inertiajs/react";
 import MainLayout from "../Layouts/MainLayout.jsx";
 import toast from "react-hot-toast";
-import { HeartIcon, StarIcon } from "@heroicons/react/24/outline/index.js";
+import {HeartIcon, StarIcon} from "@heroicons/react/24/outline/index.js";
 import {Accordion, AccordionBody, AccordionHeader, AccordionList, Button} from "@codenteq/interfeys";
 
-export default function EventApplicationForm({ cities, event, application = null}) {
+export default function EventApplicationForm({cities, event, application = null}) {
     const [step, setStep] = useState(1);
-    const [participants, setParticipants] = useState([]);
     const {errors, flash} = usePage().props
 
     const form = useForm({
@@ -54,7 +53,7 @@ export default function EventApplicationForm({ cities, event, application = null
     };
 
 
-    function submit(e) {
+    async function submit(e) {
         e.preventDefault()
         if (application) {
             form.put('/applications/' + application.id, {
@@ -83,7 +82,6 @@ export default function EventApplicationForm({ cities, event, application = null
 
     useEffect(() => {
         if (application) {
-            console.log(application)
             application?.children?.map((child) => {
                 form.data.participants.push({
                     id: child.id,
@@ -96,11 +94,13 @@ export default function EventApplicationForm({ cities, event, application = null
 
     useEffect(() => {
         const validParticipants = form.data.participants.filter(participant => {
+            console.log(participant.full_name, participant.birth_date);
             return participant.full_name !== '' && participant.birth_date !== '';
         });
 
         form.setData('participants', validParticipants);
-    }, [form.data.participants]);
+    }, [step]);
+
 
     return (
         <MainLayout>
@@ -151,10 +151,12 @@ export default function EventApplicationForm({ cities, event, application = null
                             )}
                     </div>
                 </form>
-                {application&& (
+                {application && (
                     <div className="flex flex-col gap-5 justify-center mt-10 mb-10">
-                        <p className="text-center">Eğer bilgilerinizde bir değişiklik var ise yukarıdaki form'dan bilgilerinizi
-                            güncelleyiniz. Bilgilerinizde bir değişiklik yoksa aşağıdaki butonu kullanaraks hızlı onay yapabilirsiniz. </p>
+                        <p className="text-center">Eğer bilgilerinizde bir değişiklik var ise yukarıdaki form'dan
+                            bilgilerinizi
+                            güncelleyiniz. Bilgilerinizde bir değişiklik yoksa aşağıdaki butonu kullanaraks hızlı onay
+                            yapabilirsiniz. </p>
                         <Button type="button" label="Check In Onayla" onClick={checkIn}/>
                     </div>
                 )}
