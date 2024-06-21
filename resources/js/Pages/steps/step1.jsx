@@ -54,7 +54,7 @@ export default function Step1({data, setData, cities}) {
                 />
                 <div>
                     <div className="mb-5">
-                        <Select name="job" label="Mesleğiniz" defaultValue="Choose"
+                        <Select name="job" label="Mesleğiniz" placeholder="Lütfen Mesleğinizi Seçiniz"
                                 className="block w-full"
                                 onChange={(e) => {
                                     setSelectedJob(e.target.value);
