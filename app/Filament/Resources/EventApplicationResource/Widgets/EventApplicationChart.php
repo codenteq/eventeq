@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\EventApplicationResource\Widgets;
 
 use App\Models\Event;
+use App\Models\EventApplication;
 use Filament\Widgets\ChartWidget;
 
 class EventApplicationChart extends ChartWidget
@@ -16,7 +17,9 @@ class EventApplicationChart extends ChartWidget
         Event::all()->each(function (Event $event) use ($applicationStatistics) {
             $applicationStatistics->push([
                 'label' => str()->limit($event->name, 35),
-                'data' => [$event->applications()->count()],
+                'data' => [$event->applications()->count() + $event->applications()->get()->reduce(function ($carry, $application) {
+                        return $carry + $application->loadCount('children')['children_count'];
+                    }, 0)],
             ]);
         });
 
