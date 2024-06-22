@@ -56,6 +56,7 @@ class StoreEventApplicationRequest extends FormRequest
         return [
             'full_name.required' => 'Ad soyad alanı gereklidir',
             'email.required' => 'E-posta alanı gereklidir',
+            'email.email' => 'E-posta alanı geçerli bir e-posta adresi olmalıdır',
             'phone.required' => 'Telefon alanı gereklidir',
             'birth_date.required' => 'Doğum tarihi alanı gereklidir',
             'birth_date.digits' => 'Doğum tarihi alanı 4 haneli olmalıdır',
