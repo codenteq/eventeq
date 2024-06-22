@@ -13,6 +13,7 @@ export default function Step4({data, setData}) {
                     name="telescope"
                     value={data.telescope}
                     onChange={(e) => setData('telescope', e.target.value)}
+                    min={0}
                     type="number"
                     label="Teleskop"
                     helpText="Kaç adet teleskop getireceksiniz?"
@@ -31,6 +32,7 @@ export default function Step4({data, setData}) {
                     value={data.swaddling}
                     onChange={(e) => setData('swaddling', e.target.value)}
                     type="number"
+                    min={0}
                     label="Kundak"
                     helpText="Kaç adet kundak getireceksiniz?"
                     className="block w-full"
@@ -46,6 +48,7 @@ export default function Step4({data, setData}) {
                     value={data.binocular}
                     onChange={(e) => setData('binocular', e.target.value)}
                     type="number"
+                    min={0}
                     label="Dürbün"
                     helpText="Kaç adet dürbün getireceksiniz?"
                     className="block w-full"
@@ -55,6 +58,7 @@ export default function Step4({data, setData}) {
                     value={data.camera}
                     onChange={(e) => setData('camera', e.target.value)}
                     type="number"
+                    min={0}
                     label="Fotoğraf makinesi"
                     helpText="Kaç adet fotoğraf makinesi getireceksiniz?"
                     className="block w-full"
@@ -64,6 +68,7 @@ export default function Step4({data, setData}) {
                     value={data.tripod}
                     onChange={(e) => setData('tripod', e.target.value)}
                     type="number"
+                    min={0}
                     label="Tripod"
                     helpText="Kaç adet tripod getireceksiniz?"
                     className="block w-full"
@@ -73,6 +78,7 @@ export default function Step4({data, setData}) {
                     value={data.walkie_talkie}
                     onChange={(e) => setData('walkie_talkie', e.target.value)}
                     type="number"
+                    min={0}
                     label="Telsiz"
                     helpText="Kaç adet telsiz getireceksiniz?"
                     className="block w-full"
@@ -82,6 +88,7 @@ export default function Step4({data, setData}) {
                     value={data.computer}
                     onChange={(e) => setData('computer', e.target.value)}
                     type="number"
+                    min={0}
                     label="Bilgisayar"
                     helpText="Kaç adet bilgisayar getireceksiniz?"
                     className="block w-full"

@@ -43,6 +43,7 @@ export default function Step3({data, setData}) {
                             value={data.tent}
                             onChange={(e) => setData('tent', e.target.value)}
                             type="number"
+                            min={0}
                             label="Çadır"
                             helpText="Kaç adet çadır getirebilirsiniz?"
                             className="block w-full"
@@ -52,6 +53,7 @@ export default function Step3({data, setData}) {
                             value={data.sleeping_bag}
                             onChange={(e) => setData('sleeping_bag', e.target.value)}
                             type="number"
+                            min={0}
                             label="Uyku tulumu"
                             helpText="Kaç adet uyku tulumu getirebilirsiniz?"
                             className="block w-full"
@@ -61,6 +63,7 @@ export default function Step3({data, setData}) {
                             value={data.mat}
                             onChange={(e) => setData('mat', e.target.value)}
                             type="number"
+                            min={0}
                             label="Mat"
                             helpText="Kaç adet mat getirebilirsiniz?"
                             className="block w-full"
@@ -70,6 +73,7 @@ export default function Step3({data, setData}) {
                             value={data.chair}
                             onChange={(e) => setData('chair', e.target.value)}
                             type="number"
+                            min={0}
                             label="Sandalye"
                             helpText="Kaç adet sandalye getirebilirsiniz?"
                             className="block w-full"
