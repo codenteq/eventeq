@@ -17,6 +17,12 @@ class ViewStatistics extends Page
 
     protected static ?string $title = 'Etkinlik İstatistikleri';
 
+    public function getHeading(): string
+    {
+        return $this?->record?->name;
+    }
+
+
     public function mount(int | string $record): void
     {
         $this->record = $this->resolveRecord($record);
