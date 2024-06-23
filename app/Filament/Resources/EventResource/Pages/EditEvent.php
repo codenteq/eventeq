@@ -10,6 +10,8 @@ class EditEvent extends EditRecord
 {
     protected static string $resource = EventResource::class;
 
+    protected static ?string $title = 'Etkinlik Düzenle';
+
     protected function getHeaderActions(): array
     {
         return [

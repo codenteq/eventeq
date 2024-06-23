@@ -23,6 +23,12 @@ class EventApplicationResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $title = 'Etkinlik Başvuruları';
+
+    protected static ?string $navigationLabel = 'Etkinlik Başvuruları';
+
+    protected static ?string $label = 'Etkinlik Başvuru';
+
     public static function form(Form $form): Form
     {
         return $form

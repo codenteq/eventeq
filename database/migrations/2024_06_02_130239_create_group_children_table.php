@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(\App\Models\Group::class);
             $table->string('full_name');
-            $table->string('birth_date');
+            $table->date('birth_date');
             $table->timestamps();
         });
     }

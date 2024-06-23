@@ -9,6 +9,8 @@ use App\Models\Event;
 use App\Services\EventApplicationService;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Pages\Page;
+use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Components\Tab;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -22,6 +24,14 @@ class EventResource extends Resource
     protected static ?string $model = Event::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
+
+    protected static ?string $title = 'Etkinlikler';
+
+    protected static ?string $navigationLabel = 'Etkinlikler';
+
+    protected static ?string $label = 'Etkinlik';
 
     public static function form(Form $form): Form
     {
@@ -107,12 +117,21 @@ class EventResource extends Resource
         ];
     }
 
+    public static function getRecordSubNavigation(Page $page): array
+    {
+        return $page->generateNavigationItems([
+            Pages\ViewStatistics::class,
+            Pages\EditEvent::class,
+        ]);
+    }
+
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListEvents::route('/'),
             'create' => Pages\CreateEvent::route('/create'),
             'edit' => Pages\EditEvent::route('/{record}/edit'),
+            'view' => Pages\ViewStatistics::route('/{record}/view-statistics')
         ];
     }
 }
