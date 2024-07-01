@@ -42,8 +42,6 @@ class CityEventApplicationChart extends ChartWidget
             ->values()
             ->toArray();
 
-        info($cities);
-
         return [
             'labels' => $cities,
             'datasets' => [
