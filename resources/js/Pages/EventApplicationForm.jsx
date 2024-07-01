@@ -5,7 +5,7 @@ import Step3 from "./steps/step3.jsx";
 import Step4 from "./steps/step4.jsx";
 import Step5 from "./steps/step5.jsx";
 import {ChevronDoubleRightIcon} from "@heroicons/react/24/outline/index.js";
-import {useForm, usePage} from "@inertiajs/react";
+import {Head, useForm, usePage} from "@inertiajs/react";
 import MainLayout from "../Layouts/MainLayout.jsx";
 import toast from "react-hot-toast";
 import {HeartIcon, StarIcon} from "@heroicons/react/24/outline/index.js";
@@ -104,6 +104,19 @@ export default function EventApplicationForm({cities, event, application = null}
 
     return (
         <MainLayout>
+            <Head>
+                <title>{event.name + " - Eventeq"}</title>
+                <meta name="description" content={event.description.replace(/<\/?[^>]+(>|$)/g, "")}/>
+                <meta property="og:title" content={event.name}/>
+                <meta property="og:description" content={event.description.replace(/<\/?[^>]+(>|$)/g, "")}/>
+                <meta property="og:url" content={`https://eventeq.codenteq.com/events/${event.id}`}/>
+                <meta property="og:site_name" content="Eventeq"/>
+                <meta property="og:image" content={`https://eventeq.codenteq.com/storage/${event.img}`}/>
+                <meta name="twitter:card" content="summary_large_image"/>
+                <meta name="twitter:title" content={event.name}/>
+                <meta name="twitter:description" content={event.description.replace(/<\/?[^>]+(>|$)/g, "")}/>
+                <meta name="twitter:image" content={`https://eventeq.codenteq.com/storage/${event.img}`}/>
+            </Head>
             <section className="max-w-4xl mx-auto my-10 px-4">
                 <div className="py-10 text-center">
                     <h3 className="text-2xl lg:text-4xl font-bold text-zinc-900 dark:text-zinc-50">

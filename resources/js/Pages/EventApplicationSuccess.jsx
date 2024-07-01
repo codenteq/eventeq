@@ -1,10 +1,23 @@
 import MainLayout from "../Layouts/MainLayout.jsx";
-import {Link} from "@inertiajs/react";
+import {Head, Link} from "@inertiajs/react";
 import {Button} from "@codenteq/interfeys";
 
 export default function EventApplicationSuccess({application}) {
     return (
         <MainLayout>
+            <Head>
+                <title>{application.event.name + " - Eventeq"}</title>
+                <meta name="description" content={application.event.description.replace(/<\/?[^>]+(>|$)/g, "")}/>
+                <meta property="og:title" content={application.event.name}/>
+                <meta property="og:description" content={application.event.description.replace(/<\/?[^>]+(>|$)/g, "")}/>
+                <meta property="og:url" content={`https://eventeq.codenteq.com/events/${application.event.id}`}/>
+                <meta property="og:site_name" content="Eventeq"/>
+                <meta property="og:image" content={`https://eventeq.codenteq.com/storage/${application.event.img}`}/>
+                <meta name="twitter:card" content="summary_large_image"/>
+                <meta name="twitter:title" content={application.event.name}/>
+                <meta name="twitter:description" content={application.event.description.replace(/<\/?[^>]+(>|$)/g, "")}/>
+                <meta name="twitter:image" content={`https://eventeq.codenteq.com/storage/${application.event.img}`}/>
+            </Head>
             <section className="bg-white py-8 antialiased">
                 <div className="mx-auto max-w-2xl px-4 2xl:px-0">
                     <h2 className="text-xl font-semibold text-green-500 sm:text-2xl mb-2">

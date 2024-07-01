@@ -1,4 +1,4 @@
-import {Link} from "@inertiajs/react";
+import {Head, Link} from "@inertiajs/react";
 import {Button} from "@codenteq/interfeys";
 import MainLayout from "../Layouts/MainLayout.jsx";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -17,6 +17,27 @@ export default function Welcome({ events }) {
     return (
         <>
             <MainLayout>
+                <Head>
+                    <title>Eventeq</title>
+                    <meta name="description" content="Etkinliklerinizi yönetin, başvuru yapın veya genel bilgi alın."/>
+                    <meta property="og:title" content="Eventeq"/>
+                    <meta property="og:description"
+                          content="Etkinliklerinizi yönetin, başvuru yapın veya genel bilgi alın."/>
+                    <meta property="og:url" content="https://eventeq.codenteq.com/"/>
+                    <meta property="og:site_name" content="Eventeq"/>
+                    <meta property="og:image"
+                          content="https://codenteq.com/wp-content/uploads/2023/03/3d-logo-mockup-dark.webp"/>
+                    <meta property="og:image:width" content="1080"/>
+                    <meta property="og:image:height" content="720"/>
+                    <meta property="og:image:type" content="image/webp"/>
+                    <meta name="twitter:card" content="summary_large_image"/>
+                    <meta name="twitter:title" content="Eventeq"/>
+                    <meta name="twitter:description"
+                          content="Etkinliklerinizi yönetin, başvuru yapın veya genel bilgi alın."/>
+                    <meta name="twitter:image"
+                          content="https://codenteq.com/wp-content/uploads/2023/03/3d-logo-mockup-dark.webp"/>
+
+                </Head>
                 <section className="container mx-auto py-10">
                     <Swiper
                         pagination={{clickable: false}}
@@ -45,7 +66,7 @@ export default function Welcome({ events }) {
                                     key={event.id}
                                     className="flex flex-col max-w-sm bg-white border border-zinc-200 rounded-lg shadow">
                                     <Link href={`/events/${event.id}`} className="flex-shrink-0">
-                                        <img className="rounded-t-lg w-full" src={`storage/${event.img}`}
+                                    <img className="rounded-t-lg w-full" src={`storage/${event.img}`}
                                              alt={event.name}/>
                                     </Link>
                                     <div className="flex flex-col flex-grow p-5">

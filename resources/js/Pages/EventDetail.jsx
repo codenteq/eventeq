@@ -1,7 +1,7 @@
 import React from 'react';
 import MainLayout from "../Layouts/MainLayout.jsx";
 import { Button } from "@codenteq/interfeys";
-import { Link } from "@inertiajs/react";
+import {Head, Link} from "@inertiajs/react";
 import { format } from "date-fns";
 import { tr } from 'date-fns/locale';
 
@@ -12,6 +12,19 @@ export default function EventDetail({ event }) {
 
     return (
         <MainLayout>
+            <Head>
+                <title>{event.name + " - Eventeq"}</title>
+                <meta name="description" content={event.description.replace(/<\/?[^>]+(>|$)/g, "")}/>
+                <meta property="og:title" content={event.name}/>
+                <meta property="og:description" content={event.description.replace(/<\/?[^>]+(>|$)/g, "")}/>
+                <meta property="og:url" content={`https://eventeq.codenteq.com/events/${event.id}`}/>
+                <meta property="og:site_name" content="Eventeq"/>
+                <meta property="og:image" content={`https://eventeq.codenteq.com/storage/${event.img}`}/>
+                <meta name="twitter:card" content="summary_large_image"/>
+                <meta name="twitter:title" content={event.name}/>
+                <meta name="twitter:description" content={event.description.replace(/<\/?[^>]+(>|$)/g, "")}/>
+                <meta name="twitter:image" content={`https://eventeq.codenteq.com/storage/${event.img}`}/>
+            </Head>
             <section className="text-gray-600 body-font relative">
                 <div className="container px-5 py-12 mx-auto">
                     <div className="flex flex-col md:flex-row justify-center md:space-x-12">
