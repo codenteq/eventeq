@@ -61,6 +61,7 @@
 
         .footer {
             margin-top: 20px;
+            position: relative;
         }
 
         .footer p {
@@ -86,6 +87,7 @@
             {{ $name }}
         </div>
         <div class="footer">
+            <p style="left: 0; position: absolute">#{{$applicationId}}</p>
             <p>{{$eventLocation}}, {{$eventStartDay}}-{{$eventEndDay}} {{$eventMonth}} {{$eventYear}}</p>
         </div>
     </div>

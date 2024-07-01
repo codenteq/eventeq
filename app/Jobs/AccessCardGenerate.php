@@ -49,6 +49,7 @@ class AccessCardGenerate implements ShouldQueue
         }
 
         $data = [
+            'applicationId' => $application->id,
             'name' => $application?->user?->name,
             'eventName' => $application?->event?->name,
             'eventLocation' => $application?->city?->name,
