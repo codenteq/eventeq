@@ -29,6 +29,11 @@ class MailSend extends Page implements HasForms
 
     protected static ?string $title = 'Mail Gönder';
 
+    public function getHeading(): string
+    {
+        return $this?->record?->name;
+    }
+
     public function mount(int | string $record): void
     {
         $this->form->fill();
