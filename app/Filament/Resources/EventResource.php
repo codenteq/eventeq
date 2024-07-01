@@ -102,6 +102,7 @@ class EventResource extends Resource
                     ->requiresConfirmation()
                     ->modalDescription('Etkinliğe kaydolan herkese mail gönderilecek. Onaylıyor musunuz?')
                     ->action(fn (Model $record, EventApplicationService $applicationService) => $applicationService->checkIn($record->id))
+                    ->disabled(fn (Model $record) => $record->whereRelation('applications', 'check_in', null)->count() === 0),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
