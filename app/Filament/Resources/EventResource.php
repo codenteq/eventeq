@@ -122,6 +122,7 @@ class EventResource extends Resource
     {
         return $page->generateNavigationItems([
             Pages\ViewStatistics::class,
+            Pages\MailSend::class,
             Pages\EditEvent::class,
         ]);
     }
@@ -132,7 +133,8 @@ class EventResource extends Resource
             'index' => Pages\ListEvents::route('/'),
             'create' => Pages\CreateEvent::route('/create'),
             'edit' => Pages\EditEvent::route('/{record}/edit'),
-            'view' => Pages\ViewStatistics::route('/{record}/view-statistics')
+            'view' => Pages\ViewStatistics::route('/{record}/view-statistics'),
+            'mail-send' => Pages\MailSend::route('/{record}/mail-send'),
         ];
     }
 }
