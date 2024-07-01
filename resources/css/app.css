@@ -31,3 +31,7 @@
         @apply font-bold
     }
 }
+
+p > a {
+    @apply text-blue-500;
+}
