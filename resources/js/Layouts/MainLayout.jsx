@@ -1,23 +1,11 @@
-import {Head, Link} from "@inertiajs/react";
+import {Link} from "@inertiajs/react";
 import {Toaster} from "react-hot-toast";
 
 const MainLayout = ({children}) => {
     return (
         <div>
-            <Head>
-                <meta property="og:locale" content="tr_TR"/>
-                <meta property="og:type" content="website"/>
-                <meta name="twitter:site" content="@codenteq"/>
-                <link rel="icon" href="https://codenteq.com/wp-content/uploads/2022/11/cropped-favicon-32x32.webp"
-                      sizes="32x32"/>
-                <link rel="icon" href="https://codenteq.com/wp-content/uploads/2022/11/cropped-favicon-192x192.webp"
-                      sizes="192x192"/>
-                <link rel="apple-touch-icon"
-                      href="https://codenteq.com/wp-content/uploads/2022/11/cropped-favicon-180x180.webp"/>
-            </Head>
             <Toaster/>
-            <header
-                className="fixed w-full backdrop-blur-md border-b border-zinc-100 px-4 lg:px-6 py-2.5 bg-white/70 z-10">
+            <header className="fixed w-full backdrop-blur-md border-b border-zinc-100 px-4 lg:px-6 py-2.5 bg-white/70 z-10">
                 <div className="container mx-auto flex justify-between items-center">
                     <Link href="/" className="text-2xl font-bold uppercase">Eventeq</Link>
                 </div>

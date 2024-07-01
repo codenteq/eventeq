@@ -11,7 +11,7 @@ posthog.init('phc_z4pthNYl2vICRVSlgdOKUfmCHCebsGI2bJDMFsnKvXc',
 )
 
 createInertiaApp({
-    //title: title => 'Eventeq',
+    title: title => 'Eventeq',
     resolve: name => {
         const pages = import.meta.glob("./Pages/**/*.jsx", { eager: true });
         return pages[`./Pages/${name}.jsx`]
