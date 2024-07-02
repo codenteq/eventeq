@@ -52,6 +52,12 @@
             font-weight: bold;
             color: white;
         }
+
+        .advertising {
+            margin-top: 30px;
+            font-size: 40px;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -65,6 +71,9 @@
     </h1>
     <p class="info">
         Varış / Ayrılış : {{$eventStartDate}} - {{$eventEndDate}}
+    </p>
+    <p class="advertising">
+        www.codenteq.com
     </p>
 </div>
 </body>
