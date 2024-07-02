@@ -144,14 +144,12 @@ export default function EventApplicationForm({cities, event, application = null}
 
                     <div className={`flex items-center ${step !== 1 ? 'justify-between' : 'justify-end'}`}>
                         {step !== 1 && <Button type="button" label="Geri" onClick={handlePrev}/>}
-                        {step !== 5 ?
-                            <Button type="button" label="Sonraki" onClick={handleNext}/> : (
-                                <Button type="submit" label="Tamamla" disabled={form.processing}/>
-
-                            )}
+                        {step !== 5 && <Button type="button" label="Sonraki" onClick={handleNext}/> }
+                        {!application && step === 5 && <Button type="submit" label="Başvuruyu Tamamla"/>}
                     </div>
+                    {application && <Button type="submit" label="Check In Onayla"/>}
                 </form>
-                {application && (
+{/*                {application && (
                     <div className="flex flex-col gap-5 justify-center mt-10 mb-10">
                         <p className="text-center">Eğer bilgilerinizde bir değişiklik var ise yukarıdaki form'dan
                             bilgilerinizi
@@ -159,7 +157,7 @@ export default function EventApplicationForm({cities, event, application = null}
                             yapabilirsiniz. </p>
                         <Button type="button" label="Check In Onayla" onClick={checkIn}/>
                     </div>
-                )}
+                )}*/}
             </section>
 
             {/*            <section className="grid grid-cols-1 md:grid-cols-2 gap-5">
