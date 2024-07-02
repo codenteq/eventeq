@@ -38,7 +38,7 @@ class AccessCardGenerate implements ShouldQueue
 
         $user = $application->user;
 
-        $qrcode = base64_encode(QrCode::format('png')->size(180)->generate(route('application.success', $this->applicationId)));
+        $qrcode = base64_encode(QrCode::format('png')->size(600)->generate(route('application.success', $this->applicationId)));
 
         $fileName = str()->slug($application->user->name) . '-' . $this->applicationId . '.pdf';
 
@@ -53,14 +53,12 @@ class AccessCardGenerate implements ShouldQueue
             'name' => $application?->user?->name,
             'eventName' => $application?->event?->name,
             'eventLocation' => $application?->city?->name,
-            'eventStartDay' => Carbon::parse($application?->event?->start_date)->format('d'),
-            'eventEndDay' => Carbon::parse($application?->event?->end_date)->format('d'),
-            'eventMonth' => Carbon::parse($application?->event?->start_date)->translatedFormat('F'),
-            'eventYear' => Carbon::parse($application?->event?->start_date)->format('Y'),
+            'eventStartDate' => Carbon::parse($application?->event?->start_date)->format('d.m.Y'),
+            'eventEndDate' => Carbon::parse($application?->event?->end_date)->format('d.m.Y'),
             'qrcode' => $qrcode,
 
         ];
-        $pdf = Pdf::loadView('access-card', $data)->setPaper('a6');
+        $pdf = Pdf::loadView('access-card', $data)->setPaper([0, 0, 1063, 1417]);
 
         $pdf->save(storage_path('app/public/access-card/' . $fileName));
         $attachments->push(public_path('storage/access-card/' . $fileName));
@@ -68,8 +66,7 @@ class AccessCardGenerate implements ShouldQueue
         $application?->children?->each(function ($child) use (&$application, &$data, &$attachments, $fileName) {
             $data['name'] = $child->full_name;
             $fileName = str()->slug($child->full_name) . '-' . $this->applicationId . '.pdf';
-            $data['qrcode'] = base64_encode(QrCode::format('png')->size(180)->generate(route('application.success', $this->applicationId)));
-            $pdf = Pdf::loadView('access-card', $data)->setPaper('a6');
+            $pdf = Pdf::loadView('access-card', $data)->setPaper([0, 0, 1063, 1417]);
             $pdf->save(storage_path('app/public/access-card/' . $fileName));
             $attachments->push(public_path('storage/access-card/' . $fileName));
         });
