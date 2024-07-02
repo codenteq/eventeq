@@ -1,5 +1,5 @@
 import {Input, Label} from "@codenteq/interfeys";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 export default function Step3({data, setData}) {
     const [dontCampingEquipment, setDontCampingEquipment] = useState(data.dont_camping_equipment);
@@ -8,6 +8,10 @@ export default function Step3({data, setData}) {
         setData('dont_camping_equipment', event.target.checked)
         setDontCampingEquipment(event.target.checked);
     };
+
+    useEffect(() => {
+        setDontCampingEquipment(data.dont_camping_equipment);
+    }, []);
 
     return (
         <>
