@@ -45,7 +45,7 @@ export default function Step3({data, setData}) {
                             type="number"
                             min={0}
                             label="Çadır"
-                            helpText="Kaç adet çadır getirebilirsiniz?"
+                            helpText="Kaç adet çadır ihtiyacınız var?"
                             className="block w-full"
                         />
                         <Input
@@ -55,7 +55,7 @@ export default function Step3({data, setData}) {
                             type="number"
                             min={0}
                             label="Uyku tulumu"
-                            helpText="Kaç adet uyku tulumu getirebilirsiniz?"
+                            helpText="Kaç adet uyku tulumu ihtiyacınız var?"
                             className="block w-full"
                         />
                         <Input
@@ -65,7 +65,7 @@ export default function Step3({data, setData}) {
                             type="number"
                             min={0}
                             label="Mat"
-                            helpText="Kaç adet mat getirebilirsiniz?"
+                            helpText="Kaç adet mat ihtiyacınız var?"
                             className="block w-full"
                         />
                         <Input
@@ -75,7 +75,7 @@ export default function Step3({data, setData}) {
                             type="number"
                             min={0}
                             label="Sandalye"
-                            helpText="Kaç adet sandalye getirebilirsiniz?"
+                            helpText="Kaç adet sandalye ihtiyacınız var?"
                             className="block w-full"
                         />
                     </div>
