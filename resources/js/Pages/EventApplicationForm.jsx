@@ -94,7 +94,6 @@ export default function EventApplicationForm({cities, event, application = null}
 
     useEffect(() => {
         const validParticipants = form.data.participants.filter(participant => {
-            console.log(participant.full_name, participant.birth_date);
             return participant.full_name !== '' && participant.birth_date !== '';
         });
 

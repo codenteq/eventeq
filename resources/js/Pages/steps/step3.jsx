@@ -10,8 +10,8 @@ export default function Step3({data, setData}) {
     };
 
     useEffect(() => {
-        setDontCampingEquipment(data.dont_camping_equipment !== 0);
-    }, []);
+        console.log(data);
+    }, [data]);
 
     return (
         <>

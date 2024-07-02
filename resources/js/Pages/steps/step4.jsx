@@ -1,7 +1,12 @@
 import {Input} from "@codenteq/interfeys";
-import React from "react";
+import React, {useEffect} from "react";
 
 export default function Step4({data, setData}) {
+
+    useEffect(() => {
+        console.log(data);
+    }, [data]);
+
     return (
         <>
             <div className="my-5">

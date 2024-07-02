@@ -11,6 +11,10 @@ class EventApplication extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'dont_camping_equipment' => 'boolean',
+    ];
+
     public function event(): HasOne
     {
         return $this->hasOne(Event::class, 'id', 'event_id');
