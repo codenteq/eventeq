@@ -101,6 +101,10 @@ export default function EventApplicationForm({cities, event, application = null}
         form.setData('participants', validParticipants);
     }, [step]);
 
+    useEffect(() => {
+        console.log(application);
+    }, []);
+
 
     return (
         <MainLayout>
