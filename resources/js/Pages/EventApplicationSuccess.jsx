@@ -7,15 +7,34 @@ export default function EventApplicationSuccess({application}) {
         <MainLayout>
             <section className="bg-white py-8 antialiased">
                 <div className="mx-auto max-w-2xl px-4 2xl:px-0">
-                    <h2 className="text-xl font-semibold text-green-500 sm:text-2xl mb-2">
-                        Başarılı bir şekilde kaydınız gerçekleştirildi
-                    </h2>
-                    <h3 className="text-green-500 font-semibold mb-2">
-                        Başvuru Numaranız : {application?.id}
-                    </h3>
-                    <p className="text-blue-500 font-semibold mb-2">
-                        Lütfen Başvuru numaranızı Check-in sırasında kullanmak saklayınız.  Size bu numara eposta ile de gönderilmiştir.
-                    </p>
+                    {application?.check_in === null ? (
+                        <>
+                            <h2 className="text-xl font-semibold text-green-500 sm:text-2xl mb-2">
+                                Başarılı bir şekilde kaydınız gerçekleştirildi
+                            </h2>
+                            <h3 className="text-green-500 font-semibold mb-2">
+                                Başvuru Numaranız : {application?.id}
+                            </h3>
+                            <p className="text-blue-500 font-semibold mb-2">
+                                Lütfen Başvuru numaranızı Check-in sırasında kullanmak saklayınız. Size bu numara eposta
+                                ile de gönderilmiştir.
+                            </p>
+                        </>
+                    ) : (
+                        <>
+                            <h2 className="text-xl font-semibold text-green-500 sm:text-2xl mb-2">
+                                Check-in işlemi başarılı bir şekilde gerçekleştirildi
+                            </h2>
+                            <h3 className="text-green-500 font-semibold mb-2">
+                                Başvuru Numaranız : {application?.id}
+                            </h3>
+                            <p className="text-blue-500 font-semibold mb-2">
+                                Etkinlik alanında görüşmek üzere..
+                                Dijital giriş yaka kartlarınız eposta adresinize gönderilmiştir.
+                            </p>
+                        </>
+                    )}
+
                     <div>
                         <h4 className="text-gray-800 mb-6 md:mb-8">
                             {application.event.name} Etkinlik Detayı
@@ -72,7 +91,7 @@ export default function EventApplicationSuccess({application}) {
                 </div>
                 <div className="flex items-center justify-center space-x-4">
                     <Link href={`/events/` + application.event_id}>
-                       <Button type='button' label=' Etlinliğe Geri Dön' className='w-full'/>
+                        <Button type='button' label=' Etlinliğe Geri Dön' className='w-full'/>
                     </Link>
                 </div>
             </section>
