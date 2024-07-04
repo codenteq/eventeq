@@ -60,14 +60,20 @@ export default function EventApplicationForm({cities, event, application = null}
                 data: form.data,
                 onError: () => {
                     toast.error('Bir hata oluştu. Lütfen tekrar deneyin.')
-                }
+                },
+                onStart () {
+                    toast.loading('Check-in yapılıyor. Lütfen bekleyin...')
+                },
+                onFinish () {
+                    toast.remove()
+                },
             })
         } else {
             form.post('/applications/' + event.id, {
                 data: form.data,
                 onError: () => {
                     toast.error('Bir hata oluştu. Lütfen tekrar deneyin.')
-                }
+                },
             })
         }
     }
