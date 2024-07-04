@@ -62,7 +62,7 @@ export default function EventApplicationForm({cities, event, application = null}
                     toast.error('Bir hata oluştu. Lütfen tekrar deneyin.')
                 },
                 onStart () {
-                    toast.loading('Check-in yapılıyor. Lütfen bekleyin...')
+                    toast.loading('Check-in yapılıyor. Lütfen bekleyiniz...')
                 },
                 onFinish () {
                     toast.remove()
