@@ -53,8 +53,8 @@ class AccessCardGenerate implements ShouldQueue
             'name' => $application?->user?->name,
             'eventName' => $application?->event?->name,
             'eventLocation' => $application?->city?->name,
-            'eventStartDate' => Carbon::parse($application?->event?->start_date)->format('d.m.Y'),
-            'eventEndDate' => Carbon::parse($application?->event?->end_date)->format('d.m.Y'),
+            'eventStartDate' => Carbon::parse($application?->arrival_date)->format('d.m.Y'),
+            'eventEndDate' => Carbon::parse($application?->departure_date)->format('d.m.Y'),
             'qrcode' => $qrcode,
 
         ];
