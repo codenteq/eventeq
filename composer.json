@@ -11,6 +11,7 @@
         "inertiajs/inertia-laravel": "^1.2",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
+        "maatwebsite/excel": "^3.1",
         "predis/predis": "^2.2",
         "simplesoftwareio/simple-qrcode": "^4.2"
     },

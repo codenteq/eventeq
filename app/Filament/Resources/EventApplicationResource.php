@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Exports\EventApplicationExport;
 use App\Filament\Resources\EventApplicationResource\Pages;
 use App\Filament\Resources\EventApplicationResource\RelationManagers;
 use App\Models\Event;
@@ -15,7 +16,7 @@ use Filament\Tables\Table;
 use FontLib\TrueType\Collection;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EventApplicationResource extends Resource
 {
@@ -116,10 +117,14 @@ class EventApplicationResource extends Resource
     {
         return $table
             ->headerActions([
+                Tables\Actions\Action::make('download')
+                    ->label('Excel Olarak İndir')
+                    ->color('gray')
+                    ->action(fn(): \Symfony\Component\HttpFoundation\BinaryFileResponse => Excel::download(new EventApplicationExport(), 'etkinlik-başvurulari.xlsx')),
                 Tables\Actions\Action::make('create')
                     ->label('Başvuru Oluştur')
-                    ->url(fn (): string => route('application.index', Event::first()->id))
-                    ->openUrlInNewTab()
+                    ->url(fn(): string => route('application.index', Event::first()->id))
+                    ->openUrlInNewTab(),
             ])
             ->columns([
                 Tables\Columns\TextColumn::make('id')
