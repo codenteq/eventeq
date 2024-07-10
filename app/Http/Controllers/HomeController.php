@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function index(): \Inertia\Response|\Inertia\ResponseFactory
     {
         return inertia('Welcome', [
-            'events' => Event::query()->where('start_date', '>', now())->with('city')->get(),
+            'events' => Event::query()->where('end_date', '>', now())->with('city')->get(),
         ]);
     }
 }
