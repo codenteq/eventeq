@@ -11,7 +11,7 @@ export default function Step4({data, setData}) {
         <>
             <div className="my-5">
                 <h3>Adım 4: Ekipman Bilgileri</h3>
-                <p>(Lütfen alana getirebileceğiniz ekipmanlardan bahsediniz.)</p>
+                <p>(Alana getireceğiniz ekipmanlardan bahsetmek isterseniz aşağıda belirtiniz. İstatistik amaçlıdır.)</p>
             </div>
             <div className="grid gap-5 mb-6 lg:grid-cols-2">
                 <Input
