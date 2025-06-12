@@ -222,7 +222,7 @@ export default function EventApplicationForm({cities, event, application = null}
                             </Accordion>
                             <Accordion>
                                 <AccordionHeader>
-                                    Yeme içme başına. Kamp gereksinimleri nelerdir?
+                                    Kamp gereksinimleri nelerdir, Yeme-içme nasıl olacak, mangal serbest mi?
                                 </AccordionHeader>
                                 <AccordionBody>
                                     Katılım için gerekli olan tüm gereksinimleri sizler düşüneceksiniz. Etkinlik boyunca çevre köylerden gelen kadınlarımız ücreti karşılığında güzel yemekler yapıyor, yararlanabilirsiniz. İsterseniz tüm yiyeceklerinizi kendiniz getirebilirsiniz. Mangal yapmak etkinlik boyunca yasak, lütfen ormanlarımızı korumak amacıyla bu yasağa uymanızı öneriyoruz.
@@ -230,7 +230,7 @@ export default function EventApplicationForm({cities, event, application = null}
                             </Accordion>
                             <Accordion>
                                 <AccordionHeader>
-                                    Etkinlik ücretli mi? Etkinliğin kazanımları nelerdir?
+                                    Etkinliğin kazanımları nelerdir,  Etkinlik ücretli mi?
                                 </AccordionHeader>
                                 <AccordionBody>
                                     Unutmayın, biz size sadece karanlık bir gökyüzü veriyoruz ve elimizden geldiğince teleskoplarla gök cisimlerini göstermeye çalışıyoruz. Beyağaç Belediyesi sizden girişte bir ücret alacaktır. Bu ücretin nedeni de erkek ve kadın tuvaletlerinde geçici işçi çalıştırıyorlar temizlik için. Alınan ücret o işçilerin ücretidir.
