@@ -195,54 +195,42 @@ export default function EventApplicationForm({cities, event, application = null}
                         <AccordionList>
                             <Accordion>
                                 <AccordionHeader>
-                                    Etkinliğe nasıl başvurabilirim?
+                                    Çocuklar için neden doğum yılı bilgisi isteniyor?
                                 </AccordionHeader>
                                 <AccordionBody>
-                                    Etkinliğe başvurmak için genellikle etkinlik sayfasında bulunan başvuru formunu
-                                    doldurmanız gerekmektedir. Başvuru formunda gerekli bilgileri eksiksiz olarak
-                                    doldurduktan sonra başvurunuz tamamlanmış olacaktır.
+                                    Etkinliğimizde çocuklarımız için yaş gruplarına özel programlar hazırlıyoruz. Bu nedenle başvuru formunun ikinci kısmında yer alan diğer katılımcı bilgilerine çocuklarınızın doğum yılını yazmanız, planlamamızı kolaylaştıracaktır.
                                 </AccordionBody>
                             </Accordion>
                             <Accordion>
                                 <AccordionHeader>
-                                    Başvurumu ne zaman yapmalıyım?
+                                    Başvurudan sonra Check-in nedir?
                                 </AccordionHeader>
                                 <AccordionBody>
-                                    Etkinlik başvuruları genellikle belirli bir tarihe kadar açıktır. Bu tarih, etkinlik
-                                    sayfasında veya başvuru formunda belirtilir. Başvuru tarihini kaçırmamak için
-                                    belirtilen tarihe kadar başvurunuzu tamamlamanız önemlidir.
+                                    Etkinliğe kesin olarak katılacağınız belli olduğunda, basit bir Check-in işlemi yapmanızı rica ediyoruz. Bu sayede kaç katılımcı ve özellikle kaç çocuk geleceğini önceden bilerek hazırlıklarımızı daha doğru şekilde yapabiliyoruz.
                                 </AccordionBody>
                             </Accordion>
                             <Accordion>
                                 <AccordionHeader>
-                                    Başvurum onaylandığında ne olacak?
+                                    Onay e-postası ne işe yarıyor?
                                 </AccordionHeader>
                                 <AccordionBody>
-                                    Başvurunuz onaylandığında genellikle bir onay e-postası alırsınız. Bu e-postada
-                                    başvurunuzun onaylandığı ve etkinlikle ilgili önemli bilgilerin bulunduğu
-                                    belirtilir.
+                                    Başvuru formunu doldurduğunuzda size gelen e-posta, yalnızca başvurunuzun alındığını göstermek amacıyla gönderilir. Bu e-posta sayesinde formun sistemimize ulaştığını anlayabilir ve aynı formu tekrar doldurmaktan kaçınabilirsiniz.
                                 </AccordionBody>
                             </Accordion>
                             <Accordion>
                                 <AccordionHeader>
-                                    Katılım için gerekenler nelerdir?
+                                    Yeme-içme nasıl olacak, mangal serbest mi?
                                 </AccordionHeader>
                                 <AccordionBody>
-                                    Katılım için genellikle kayıt yapılması gerekmektedir. Bazı etkinlikler belirli bir
-                                    yaş sınırı veya tecrübe gerektirebilir. Ayrıntılı bilgi etkinlik sayfasında yer
-                                    almaktadır.
+                                    Etkinlik süresince çevre köylerden gelen kadınlar ücretli olarak yemek hizmeti sunmaktadır. Dilerseniz kendi yiyeceklerinizi de getirebilirsiniz. Ancak etkinlik alanında mangal yapmak kesinlikle yasaktır. Bu kural, ormanlarımızı korumak amacıyla uygulanmaktadır.
                                 </AccordionBody>
                             </Accordion>
                             <Accordion>
                                 <AccordionHeader>
-                                    Başvurum reddedilirse ne yapmalıyım?
+                                    Etkinlik ücretli mi?
                                 </AccordionHeader>
                                 <AccordionBody>
-                                    Başvurunuzun reddedilmesi durumunda genellikle size bir geri bildirim iletilir. Geri
-                                    bildirimde neden başvurunuzun reddedildiği ve gerekirse yeniden başvuru
-                                    yapabileceğiniz
-                                    bilgisi yer alır. Başvurunuzun reddedilmesi durumunda organizatörlerle iletişime
-                                    geçerek daha fazla bilgi alabilirsiniz.
+                                    Etkinliğimiz tamamen gönüllülük esasına dayanır ve ücretsizdir. Ancak girişte Beyağaç Belediyesi tarafından alınan cüzi bir ücret bulunmaktadır. Bu ücret, temizlik işleri için çalışan geçici personelin masraflarını karşılamak amacıyla alınmaktadır.
                                 </AccordionBody>
                             </Accordion>
                         </AccordionList>
