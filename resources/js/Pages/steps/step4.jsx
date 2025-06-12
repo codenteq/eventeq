@@ -1,4 +1,4 @@
-import {Input} from "@codenteq/interfeys";
+import {Input, Label} from "@codenteq/interfeys";
 import React, {useEffect} from "react";
 
 export default function Step4({data, setData}) {
@@ -14,6 +14,12 @@ export default function Step4({data, setData}) {
                 <p>(Alana getireceğiniz ekipmanlardan bahsetmek isterseniz aşağıda belirtiniz. İstatistik amaçlıdır.)</p>
             </div>
             <div className="grid gap-5 mb-6 lg:grid-cols-2">
+                <div className="flex items-center gap-3 mb-6">
+                    <Label htmlFor="dont_camping_equipment">
+                        Kamp malzemelerini (Çadır, sandalye, tulum vb.),
+                        uygun bir fiyata kamp alanından temin etmek ister misiniz?
+                    </Label>
+                </div>
                 <Input
                     name="telescope"
                     value={data.telescope}
