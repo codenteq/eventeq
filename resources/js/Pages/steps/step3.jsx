@@ -1,13 +1,7 @@
 import { Input } from "@codenteq/interfeys";
-import React, { useEffect } from "react";
+import React from "react";
 
 export default function Step3({ data, setData }) {
-    useEffect(() => {
-        if (data.dont_camping_equipment !== true) {
-            setData('dont_camping_equipment', true);
-        }
-    }, []);
-
     return (
         <>
             <div className="my-5">
@@ -27,7 +21,7 @@ export default function Step3({ data, setData }) {
                 </a>
             </div>
 
-            <div className="grid gap-5 mb-6 lg:grid-cols-2">
+            {/*<div className="grid gap-5 mb-6 lg:grid-cols-2">
                 <Input
                     name="tent"
                     value={data.tent || ""}
@@ -68,7 +62,7 @@ export default function Step3({ data, setData }) {
                     helpText="Kaç adet sandalye ihtiyacınız var?"
                     className="block w-full"
                 />
-            </div>
+            </div>*/}
         </>
     );
 }
