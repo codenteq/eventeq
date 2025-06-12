@@ -9,12 +9,17 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 class EventApplicationExport implements FromCollection, WithMapping, WithHeadings
 {
+
+    public function __construct(private readonly int $eventId)
+    {
+    }
+
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection(): \Illuminate\Support\Collection
     {
-            return EventApplication::with(['city', 'user'])->get();
+            return EventApplication::query()->where('event_id', $this->eventId)->with(['city', 'user'])->get();
     }
 
     public function headings(): array

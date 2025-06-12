@@ -30,6 +30,7 @@ class EventApplicationService
                     'email' => $data['email'],
                     'phone' => $data['phone'],
                     'password' => bcrypt(rand(100000, 999999)),
+                    'gender' => $data['gender'],
                     'birth_date' => Carbon::createFromDate($data['birth_date'], 6, 1),
                 ]);
             }
@@ -57,6 +58,8 @@ class EventApplicationService
                 'mat' => $data['mat'],
                 'chair' => $data['chair'],
                 'dont_camping_equipment' => $data['dont_camping_equipment'],
+                'share_telescope' => $data['share_telescope'],
+                'bring_telescope' => $data['bring_telescope'],
                 'telescope' => $data['telescope'],
                 'telescope_brand' => $data['telescope_brand'],
                 'swaddling' => $data['swaddling'],
@@ -96,6 +99,8 @@ class EventApplicationService
             'mat' => $data['mat'],
             'chair' => $data['chair'],
             'dont_camping_equipment' => $data['dont_camping_equipment'],
+            'share_telescope' => $data['share_telescope'],
+            'bring_telescope' => $data['bring_telescope'],
             'telescope' => $data['telescope'],
             'telescope_brand' => $data['telescope_brand'],
             'swaddling' => $data['swaddling'],
@@ -116,6 +121,7 @@ class EventApplicationService
         $application->user()->update([
             'name' => $data['full_name'],
             'phone' => $data['phone'],
+            'gender' => $data['gender'],
             'birth_date' => Carbon::createFromDate($data['birth_date'], 6, 1),
         ]);
 

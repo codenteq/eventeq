@@ -9,6 +9,7 @@ export default function Step1({data, setData, cities}) {
         'Öğretmen',
         'Mühendis',
         'Kamu',
+        'Hemşire',
         'Serbest meslek Dernek müdürü'
     ];
 
@@ -28,6 +29,22 @@ export default function Step1({data, setData, cities}) {
                     label="Tam adınız"
                     className="block w-full"
                 />
+                <div>
+                    <Select
+                        name="gender"
+                        value={data.gender}
+                        onChange={(e) => setData('gender', e.target.value)}
+                        label="Cinsiyetiniz"
+                        className="w-full"
+                        placeholder="Lütfen Cinsiyetinizi Seçiniz">
+                        <option>
+                            Erkek
+                        </option>
+                        <option>
+                            Kadın
+                        </option>
+                    </Select>
+                </div>
                 <Input
                     name="email"
                     value={data.email}

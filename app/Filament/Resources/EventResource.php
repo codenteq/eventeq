@@ -77,6 +77,7 @@ class EventResource extends Resource
                     ->label('ID'),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
+                    ->limit(40)
                     ->label('Etkinliğin Adı'),
                 Tables\Columns\TextColumn::make('city.name')
                     ->searchable()
@@ -89,20 +90,28 @@ class EventResource extends Resource
                     ->searchable()
                     ->label('Bitiş Tarihi'),
             ])
+            ->recordClasses(function (Model $record) {
+                return $record->end_date < now()
+                    ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-100'
+                    : '';
+            })
             ->defaultSort('id', 'desc')
             ->filters([
                 //
 
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
                 Tables\Actions\ViewAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->hidden(fn (Model $record) => $record->end_date < now()),
+                Tables\Actions\EditAction::make()
+                    ->hidden(fn (Model $record) => $record->end_date < now()),
                 Tables\Actions\Action::make('Check-in', 'check-in')
                     ->requiresConfirmation()
                     ->modalDescription('Etkinliğe kaydolan herkese mail gönderilecek. Onaylıyor musunuz?')
                     ->action(fn (Model $record, EventApplicationService $applicationService) => $applicationService->checkIn($record->id))
-                    ->disabled(fn (Model $record) => $record->whereRelation('applications', 'check_in', null)->count() === 0),
+                    ->disabled(fn (Model $record) => $record->whereRelation('applications', 'check_in', null)->count() === 0)
+                    ->hidden(fn (Model $record) => $record->end_date < now()),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -122,6 +131,7 @@ class EventResource extends Resource
     {
         return $page->generateNavigationItems([
             Pages\ViewStatistics::class,
+            Pages\ViewApplications::class,
             Pages\MailSend::class,
             Pages\EditEvent::class,
         ]);
@@ -133,6 +143,7 @@ class EventResource extends Resource
             'index' => Pages\ListEvents::route('/'),
             'create' => Pages\CreateEvent::route('/create'),
             'edit' => Pages\EditEvent::route('/{record}/edit'),
+            'applications' => Pages\ViewApplications::route('/{record}/applications'), // Add this line
             'view' => Pages\ViewStatistics::route('/{record}/view-statistics'),
             'mail-send' => Pages\MailSend::route('/{record}/mail-send'),
         ];

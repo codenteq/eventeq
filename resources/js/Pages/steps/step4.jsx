@@ -1,4 +1,4 @@
-import {Input} from "@codenteq/interfeys";
+import {Input, Label} from "@codenteq/interfeys";
 import React, {useEffect} from "react";
 
 export default function Step4({data, setData}) {
@@ -13,8 +13,35 @@ export default function Step4({data, setData}) {
                 <h3>Adım 4: Ekipman Bilgileri</h3>
                 <p>(Alana getireceğiniz ekipmanlardan bahsetmek isterseniz aşağıda belirtiniz. İstatistik amaçlıdır.)</p>
             </div>
-            <div className="grid gap-5 mb-6 lg:grid-cols-2">
-                <Input
+            <div className="grid gap-5 mb-6 lg:grid-cols-1">
+                <div className="flex items-center mb-4">
+                    <Input
+                        id="bring_telescope"
+                        name="bring_telescope"
+                        type="checkbox"
+                        checked={data.bring_telescope || false}
+                        onChange={(e) => setData('bring_telescope', e.target.checked)}
+                        className="mr-2"
+                    />
+                    <Label htmlFor="bring_telescope">
+                        Yanınızda teleskop getirecek misiniz?
+                    </Label>
+                </div>
+
+                <div className="flex items-center mb-6">
+                    <Input
+                        id="share_telescope"
+                        name="share_telescope"
+                        type="checkbox"
+                        checked={data.share_telescope || false}
+                        onChange={(e) => setData('share_telescope', e.target.checked)}
+                        className="mr-2"
+                    />
+                    <Label htmlFor="share_telescope">
+                        Yanınızda getireceğiniz teleskopla diğer katılımcılara gözlem yaptiracak mısınız?
+                    </Label>
+                </div>
+                {/*<Input
                     name="telescope"
                     value={data.telescope}
                     onChange={(e) => setData('telescope', e.target.value)}
@@ -48,7 +75,7 @@ export default function Step4({data, setData}) {
                     label="Kundak markası"
                     className="block w-full"
                 />
-                {/*<Input
+                <Input
                     name="binocular"
                     value={data.binocular}
                     onChange={(e) => setData('binocular', e.target.value)}
