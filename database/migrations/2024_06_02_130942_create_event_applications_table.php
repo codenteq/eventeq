@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->integer('sleeping_bag')->nullable();
             $table->integer('mat')->nullable();
             $table->integer('chair')->nullable();
-            $table->boolean('dont_camping_equipment');
+            $table->boolean('dont_camping_equipment')->default(true);
             $table->integer('telescope');
             $table->string('telescope_brand')->nullable();
             $table->integer('swaddling');

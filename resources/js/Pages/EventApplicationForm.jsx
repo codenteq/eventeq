@@ -24,7 +24,7 @@ export default function EventApplicationForm({cities, event, application = null}
         city_id: application?.city_id || null,
         transportation: application?.transportation || null,
         participants: [],
-        dont_camping_equipment: application?.dont_camping_equipment || false,
+        dont_camping_equipment: application?.dont_camping_equipment || true,
         tent: application?.tent || null,
         sleeping_bag: application?.sleeping_bag || null,
         mat: application?.mat || null,
@@ -190,23 +190,26 @@ export default function EventApplicationForm({cities, event, application = null}
 
             <section className="max-w-4xl mx-auto my-8 p-4">
                 <div className="bg-white rounded-lg shadow-md p-6">
+                    <p className="mb-4">
+                        Hep beraber gerçekleştirdiğimiz Sandras etkinliği her yönüyle organize bir etkinlik değil, çünkü amacımız para kazanmak değil, tam tersine ücretsiz bir etkinlik yapmak; çünkü gelen tüm katılımcılara bilimi sevdirmek, gökyüzüne bakmanın keyfini yaşatmak. Katılımcı derken de en çok önem verdiğimiz çocuklarımız.
+                    </p>
                     <h2 className="text-2xl font-bold text-gray-800 mb-4">Sıkça Sorulan Sorular</h2>
                     <div className="space-y-4">
                         <AccordionList>
                             <Accordion>
                                 <AccordionHeader>
-                                    Çocuklar için neden doğum yılı bilgisi isteniyor?
+                                    Katılımcı bilgileri neden gerekli?
                                 </AccordionHeader>
                                 <AccordionBody>
-                                    Etkinliğimizde çocuklarımız için yaş gruplarına özel programlar hazırlıyoruz. Bu nedenle başvuru formunun ikinci kısmında yer alan diğer katılımcı bilgilerine çocuklarınızın doğum yılını yazmanız, planlamamızı kolaylaştıracaktır.
+                                    Etkinliğe katılmak için lütfen başvuru formunu doldurunuz. Çocuklarınız için ikinci kısımdaki diğer katılımcı bilgilerini ve doğum yıllarını doldurmanız bizim çok işimize yarayacak. Çünkü çocuklarımız için belirli yaş gruplarına ayrı ayrı program uygulayacağız.
                                 </AccordionBody>
                             </Accordion>
                             <Accordion>
                                 <AccordionHeader>
-                                    Başvurudan sonra Check-in nedir?
+                                    Başvurular ne zaman ve Check-in nedir?
                                 </AccordionHeader>
                                 <AccordionBody>
-                                    Etkinliğe kesin olarak katılacağınız belli olduğunda, basit bir Check-in işlemi yapmanızı rica ediyoruz. Bu sayede kaç katılımcı ve özellikle kaç çocuk geleceğini önceden bilerek hazırlıklarımızı daha doğru şekilde yapabiliyoruz.
+                                    Başvuru formunu istediğiniz zaman doldurabilirsiniz. Sizden ricamız, etkinliğe gelme durumunuz kesinleştiğinde formu doldurmanız. Etkinliğe gelecekseniz ise basit bir check-in işlemi yapmanızı istiyoruz. Bu sayede kaç çocuğumuz gelecek, kaç katılımcı olacak, bunları etkinlik öncesi öğrenmek istiyoruz.
                                 </AccordionBody>
                             </Accordion>
                             <Accordion>
@@ -219,18 +222,20 @@ export default function EventApplicationForm({cities, event, application = null}
                             </Accordion>
                             <Accordion>
                                 <AccordionHeader>
-                                    Yeme-içme nasıl olacak, mangal serbest mi?
+                                    Yeme içme başına. Kamp gereksinimleri nelerdir?
                                 </AccordionHeader>
                                 <AccordionBody>
-                                    Etkinlik süresince çevre köylerden gelen kadınlar ücretli olarak yemek hizmeti sunmaktadır. Dilerseniz kendi yiyeceklerinizi de getirebilirsiniz. Ancak etkinlik alanında mangal yapmak kesinlikle yasaktır. Bu kural, ormanlarımızı korumak amacıyla uygulanmaktadır.
+                                    Katılım için gerekli olan tüm gereksinimleri sizler düşüneceksiniz. Etkinlik boyunca çevre köylerden gelen kadınlarımız ücreti karşılığında güzel yemekler yapıyor, yararlanabilirsiniz. İsterseniz tüm yiyeceklerinizi kendiniz getirebilirsiniz. Mangal yapmak etkinlik boyunca yasak, lütfen ormanlarımızı korumak amacıyla bu yasağa uymanızı öneriyoruz.
                                 </AccordionBody>
                             </Accordion>
                             <Accordion>
                                 <AccordionHeader>
-                                    Etkinlik ücretli mi?
+                                    Etkinlik ücretli mi? Etkinliğin kazanımları nelerdir?
                                 </AccordionHeader>
                                 <AccordionBody>
-                                    Etkinliğimiz tamamen gönüllülük esasına dayanır ve ücretsizdir. Ancak girişte Beyağaç Belediyesi tarafından alınan cüzi bir ücret bulunmaktadır. Bu ücret, temizlik işleri için çalışan geçici personelin masraflarını karşılamak amacıyla alınmaktadır.
+                                    Unutmayın, biz size sadece karanlık bir gökyüzü veriyoruz ve elimizden geldiğince teleskoplarla gök cisimlerini göstermeye çalışıyoruz. Beyağaç Belediyesi sizden girişte bir ücret alacaktır. Bu ücretin nedeni de erkek ve kadın tuvaletlerinde geçici işçi çalıştırıyorlar temizlik için. Alınan ücret o işçilerin ücretidir.
+
+                                    Etkinlikte görüşmek üzere...
                                 </AccordionBody>
                             </Accordion>
                         </AccordionList>

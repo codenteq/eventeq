@@ -10,13 +10,13 @@ export default function EventApplicationSuccess({application}) {
                     {application?.check_in === null ? (
                         <>
                             <h2 className="text-xl font-semibold text-green-500 sm:text-2xl mb-2">
-                                Başarılı bir şekilde kaydınız gerçekleştirildi
+                                Harika! Başarılı bir şekilde kaydınız gerçekleştirildi.
                             </h2>
                             <h3 className="text-green-500 font-semibold mb-2">
                                 Başvuru Numaranız : {application?.id}
                             </h3>
                             <p className="text-blue-500 font-semibold mb-2">
-                                Lütfen Başvuru numaranızı Check-in sırasında kullanmak saklayınız. Size bu numara eposta
+                                Lütfen Başvuru numaranızı Check-in sırasında kullanmak için saklayınız. Size bu numara eposta
                                 ile de gönderilmiştir.
                             </p>
                         </>

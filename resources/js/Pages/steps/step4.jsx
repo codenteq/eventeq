@@ -48,7 +48,7 @@ export default function Step4({data, setData}) {
                     label="Kundak markası"
                     className="block w-full"
                 />
-                <Input
+                {/*<Input
                     name="binocular"
                     value={data.binocular}
                     onChange={(e) => setData('binocular', e.target.value)}
@@ -97,7 +97,7 @@ export default function Step4({data, setData}) {
                     label="Bilgisayar"
                     helpText="Kaç adet bilgisayar getireceksiniz?"
                     className="block w-full"
-                />
+                />*/}
             </div>
         </>
     )
