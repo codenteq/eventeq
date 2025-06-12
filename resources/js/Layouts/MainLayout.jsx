@@ -21,7 +21,7 @@ const MainLayout = ({children}) => {
                         <span className="ml-3 text-xl">Codenteq</span>
                     </a>
                     <p className="text-sm text-zinc-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-zinc-200 sm:py-2 sm:mt-0 mt-4">
-                        &#169; 2021-2024 Codenteq.
+                        &#169; 2021-{new Date().getFullYear()} Codenteq.
                     </p>
                     <a href="https://codenteq.com"
                        className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
