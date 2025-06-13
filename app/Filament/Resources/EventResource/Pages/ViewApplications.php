@@ -42,6 +42,7 @@ class ViewApplications extends ViewRecord implements HasTable
     public function table(Table $table): Table
     {
         return $table
+            ->poll('10s')
             ->headerActions([
                 Tables\Actions\Action::make('download')
                     ->label('Excel Olarak İndir')
