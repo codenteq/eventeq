@@ -298,6 +298,10 @@ class EventApplicationResource extends Resource
         return false;
     }
 
+    public static function canViewAny(): bool
+    {
+        return false;
+    }
 
     public static function getPages(): array
     {
