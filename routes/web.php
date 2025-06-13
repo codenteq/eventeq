@@ -15,7 +15,7 @@ Route::get('/applications/{event_application}/check-in', [\App\Http\Controllers\
 Route::patch('/applications/{event_application}/check-in', [\App\Http\Controllers\EventApplicationController::class, 'checkInStore'])->name('application.check-in.store');
 
 
-Route::get('/run', function () {
+/*Route::get('/run', function () {
     $applications = \App\Models\EventApplication::query()->where('id', '>', 423)->get();
 
     //dd($applications);
@@ -78,9 +78,9 @@ Route::get('test', function () {
         ->with(['user', 'children', 'city']) // Load related models
         ->get();
 
-    /*dd($applications->toArray());*/
+    dd($applications->toArray());
 
     $pdf = Pdf::loadView('accommodation-certificate', ['applications' => $applications->toArray()])->setPaper([0, 0, 794, 955], 'landscape');
 
     return $pdf->stream();
-});
+});*/

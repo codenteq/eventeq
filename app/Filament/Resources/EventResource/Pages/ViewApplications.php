@@ -146,10 +146,12 @@ class ViewApplications extends ViewRecord implements HasTable
                                                         Forms\Components\DateTimePicker::make('birth_date')
                                                             ->label('Doğum Tarihi')
                                                             ->required(),
+                                                        Forms\Components\TextInput::make('gender')
+                                                            ->label('Cinsiyet')
                                                     ]),
                                             ])
                                     ])->collapsed(),
-                                Forms\Components\Section::make('Kamp Malzemesi İstekleri')
+                               /* Forms\Components\Section::make('Kamp Malzemesi İstekleri')
                                     ->schema([
                                         Forms\Components\Grid::make()
                                             ->schema([
@@ -164,15 +166,15 @@ class ViewApplications extends ViewRecord implements HasTable
                                                 Forms\Components\Checkbox::make('dont_camping_equipment')
                                                     ->label('Kamp Ekipmanı Temin Edilecek Mi?')
                                             ])
-                                    ])->collapsed(),
+                                    ])->collapsed(),*/
                                 Forms\Components\Section::make('Getirilecek Ekipmanlar')
                                     ->schema([
                                         Forms\Components\Grid::make()
                                             ->schema([
-                                                Forms\Components\Checkbox::make('share_telescope')
-                                                    ->label('Teleskop Paylaşımı'),
                                                 Forms\Components\Checkbox::make('bring_telescope')
                                                     ->label('Teleskop Getirme'),
+                                                Forms\Components\Checkbox::make('share_telescope')
+                                                    ->label('Teleskop Paylaşımı'),
              /*                                   Forms\Components\TextInput::make('telescope')
                                                     ->label('Teleskop Sayısı'),
                                                 Forms\Components\TextInput::make('telescope_brand')

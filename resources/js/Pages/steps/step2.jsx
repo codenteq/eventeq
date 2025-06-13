@@ -1,4 +1,4 @@
-import {Button, Input} from "@codenteq/interfeys";
+import {Button, Input, Select} from "@codenteq/interfeys";
 import React, {useEffect, useState} from "react";
 
 export default function Step2({data, setData}) {
@@ -18,7 +18,7 @@ export default function Step2({data, setData}) {
     const handleAddParticipant = () => {
         if (participants.length < 5) {
             const newId = participants.length + 1;
-            setParticipants([...participants, {id: newId, full_name: '', birth_date: ''}]);
+            setParticipants([...participants, {id: newId, full_name: '', birth_date: '', gender: null}]);
         }
     };
 
@@ -35,10 +35,10 @@ export default function Step2({data, setData}) {
         <>
             <div className="my-5">
                 <h3>Adım 2: Diğer Katılımcıların Bilgileri</h3>
-                <p>Grubunuzdaki kişileri buraya ekleyiniz. En fazla 5 katılımcı daha ekleyebilirsiniz.</p>
+                <p>Ebeveyni olduğunuz diğer katılımcıları bu kısımdan ekleyiniz. 18 yaşından büyük Katılımcılar için bu formu tekrar doldurunuz.</p>
             </div>
             {participants.map((participant) => (
-                <div key={participant.id} className="grid gap-5 mb-6 lg:grid-cols-2 items-center">
+                <div key={participant.id} className="grid gap-5 mb-6 lg:grid-cols-3 items-center">
                     <Input
                         name={`full_name`}
                         type="text"
@@ -55,6 +55,22 @@ export default function Step2({data, setData}) {
                         value={participant.birth_date}
                         onChange={(event) => handleParticipantChange(participant.id, event)}
                     />
+                    <div>
+                        <Select
+                            name="gender"
+                            value={participant.gender}
+                            onChange={(event) => handleParticipantChange(participant.id, event)}
+                            label="Cinsiyetiniz"
+                            className="w-full"
+                            placeholder="Lütfen Cinsiyetinizi Seçiniz">
+                            <option>
+                                Erkek
+                            </option>
+                            <option>
+                                Kadın
+                            </option>
+                        </Select>
+                    </div>
                     <div className="flex items-center">
                         <button type="button" className="text-left text-red-600"
                                 onClick={() => handleRemoveParticipant(participant.id)}>

@@ -32,8 +32,8 @@ class EventStatsOverview extends BaseWidget
             Stat::make('18 Yaş Üstü Katılımcı Sayısı', $this->getAgeGroupCount(19, 100)),
 
             Stat::make('Tahmini Araç Sayısı', $this->record->applications()->where('transportation', 'Özel Araçla')->count()),
-            Stat::make('Teleskop Sayısı', $this->record->applications()->sum('telescope')),
-            Stat::make('Kundak Sayısı', $this->record->applications()->sum('swaddling')),
+            Stat::make('Teleskop Sayısı', $this->record->applications()->sum('bring_telescope')),
+            Stat::make('Teleskop Paylaşımı', $this->record->applications()->sum('share_telescope')),
         ];
     }
 

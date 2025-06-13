@@ -46,6 +46,7 @@ class EventApplicationService
                         'group_id' => $group->id,
                         'full_name' => $participant['full_name'],
                         'birth_date' => Carbon::createFromDate($participant['birth_date'], 6, 1),
+                        'gender' => $participant['gender']
                     ]);
                 }
             }
@@ -130,6 +131,7 @@ class EventApplicationService
                 'group_id' => $application->group_id,
                 'full_name' => $participant['full_name'],
                 'birth_date' => Carbon::createFromDate($participant['birth_date'], 6, 1),
+                'gender' => $participant['gender']
             ]);
         }
 
