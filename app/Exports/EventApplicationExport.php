@@ -56,7 +56,7 @@ class EventApplicationExport implements FromCollection, WithMapping, WithHeading
         return [
             $eventApplication->id,
             $eventApplication->user->name,
-            $eventApplication->user->birth_date ? now()->diffInYears($eventApplication->user->birth_date) : 'Bilinmiyor',
+            $eventApplication->user->birth_date - now()->format('%y'),
             $eventApplication->user->gender,
             $eventApplication->user->email,
             $eventApplication->user->phone,
