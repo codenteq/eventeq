@@ -50,7 +50,7 @@ class ViewApplications extends ViewRecord implements HasTable
                     ->action(fn(): \Symfony\Component\HttpFoundation\BinaryFileResponse => Excel::download(new EventApplicationExport($this->record->id), 'etkinlik-başvurulari.xlsx')),
                 Tables\Actions\Action::make('create')
                     ->label('Başvuru Oluştur')
-                    ->url(fn(): string => route('application.index', Event::first()->id))
+                    ->url(fn(): string => route('application.index', $this->record->id))
                     ->openUrlInNewTab(),
             ])
             ->query(
