@@ -100,7 +100,6 @@ class EventApplicationExport implements FromCollection, WithMapping, WithHeading
         } else {
             // This is a child
             $child = $row['data'];
-            $parent = $row['parent'];
 
             return [
                 $this->rowNumber,
@@ -110,12 +109,12 @@ class EventApplicationExport implements FromCollection, WithMapping, WithHeading
                 $child->gender,
                 '', // Email
                 '', // Phone
-                $parent->city->name,
+                '', // City
                 '', // Job
                 '', // Telescope
                 '', // Share
-                '',
-                '',
+                '', // Arrival Date
+                '', // Departure Date
                 /* $eventApplication->tent,
                    $eventApplication->sleeping_bag,
                    $eventApplication->mat,
