@@ -73,11 +73,11 @@ class ViewApplications extends ViewRecord implements HasTable
                 TextColumn::make('children_count')
                     ->label('Çocuk Sayısı')
                     ->getStateUsing(fn (EventApplication $record) => $record->children->count()),
-                TextColumn::make('check_in')
+/*                TextColumn::make('check_in')
                     ->label('Check-in')
                     ->formatStateUsing(fn ($state) => $state ? 'Yapıldı' : 'Yapılmadı')
                     ->badge()
-                    ->color(fn ($state) => $state ? 'success' : 'danger'),
+                    ->color(fn ($state) => $state ? 'success' : 'danger'),*/
                 TextColumn::make('created_at')
                     ->label('Başvuru Tarihi')
                     ->dateTime('d.m.Y H:i')
@@ -232,8 +232,8 @@ class ViewApplications extends ViewRecord implements HasTable
                             ->label('Geliş Tarihi'),
                         Forms\Components\DateTimePicker::make('departure_date')
                             ->label('Ayrılış Tarihi'),
-                        Forms\Components\DateTimePicker::make('check_in')
-                            ->label('Giriş Yapılma Tarihi')
+/*                        Forms\Components\DateTimePicker::make('check_in')
+                            ->label('Giriş Yapılma Tarihi')*/
                     ])
             ])
             ->bulkActions([
