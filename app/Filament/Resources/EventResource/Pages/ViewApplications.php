@@ -86,14 +86,46 @@ class ViewApplications extends ViewRecord implements HasTable
             ->defaultSort('created_at', 'desc')
             ->actions([
                 Tables\Actions\EditAction::make('Düzenle / Check-in')
-                    ->mutateFormDataUsing(function (array $data): array {
-                        if ($data['check_in'] === true) {
-                            $data['check_in'] = now();
-                        } else {
-                            $data['check_in'] = null;
-                        }
+                    ->form([
+                        Forms\Components\TextInput::make('user.name')
+                            ->label('Adı Soyadı'),
+                        Forms\Components\TextInput::make('user.email')
+                            ->label('E-Posta'),
+                        Forms\Components\TextInput::make('user.phone')
+                            ->label('Telefon'),
+                        Forms\Components\DateTimePicker::make('user.birth_date')
+                            ->label('Doğum Tarihi'),
+                        Forms\Components\TextInput::make('job')
+                            ->label('Meslek'),
+                        Forms\Components\TextInput::make('transportation')
+                            ->label('Ulaşım'),
+                    ])
+                    ->mutateRecordDataUsing(function (array $data, EventApplication $record): array {
+                        $data['user'] = [
+                            'name' => $record->user->name,
+                            'email' => $record->user->email,
+                            'phone' => $record->user->phone,
+                            'birth_date' => $record->user->birth_date,
+                        ];
 
                         return $data;
+                    })
+                    ->using(function (EventApplication $record, array $data): EventApplication {
+                        $record->update([
+                            'job' => $data['job'] ?? $record->job,
+                            'transportation' => $data['transportation'] ?? $record->transportation,
+                        ]);
+
+                        if (isset($data['user'])) {
+                            $record->user()->update([
+                                'name' => $data['user']['name'],
+                                'email' => $data['user']['email'],
+                                'phone' => $data['user']['phone'],
+                                'birth_date' => $data['user']['birth_date'],
+                            ]);
+                        }
+
+                        return $record;
                     }),
                 Tables\Actions\DeleteAction::make('delete')
                     ->modalHeading('Başvuruyu Sil'),

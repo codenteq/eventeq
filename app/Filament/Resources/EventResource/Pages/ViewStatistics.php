@@ -31,7 +31,8 @@ class ViewStatistics extends Page
     protected function getHeaderWidgets(): array
     {
         return [
-            EventResource\Widgets\EventStatsOverview::class
+            EventResource\Widgets\EventStatsOverview::class,
+            EventResource\Widgets\JobEventApplicationChart::class,
         ];
     }
 
