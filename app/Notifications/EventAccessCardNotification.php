@@ -42,7 +42,7 @@ class EventAccessCardNotification extends Notification
         return (new MailMessage)
             ->subject('Etkinlikte Görüşmek Üzere ' . $this->eventName)
             ->greeting('Merhaba ' . $this->name . '!')
-            ->line('Etkinlik başvurunuz onaylandı. Etkinlikte görüşmek üzere!')
+            ->line("Etkinlik başvurunuz onaylandı. Etkinlikte görüşmek üzere!, Dijital yaka kartlarınızı bu e-posta'nın ekinde bulabilirsiniz.")
             ->action('Başvuru Detayları', route('application.success', $this->applicationId))
             ->attachMany($this->attachments);
     }

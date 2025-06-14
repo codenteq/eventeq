@@ -7,6 +7,7 @@ use App\Models\EventApplication;
 use App\Models\Group;
 use App\Models\GroupChild;
 use App\Models\User;
+use App\Notifications\EventAccessCardNotification;
 use App\Notifications\EventApplicationNotification;
 use App\Notifications\EventCheckInNotification;
 use Carbon\Carbon;
@@ -79,13 +80,7 @@ class EventApplicationService
             ]);
         });
 
-        $user->notify(new EventApplicationNotification(
-                $application->id,
-                $application->event->id,
-                $user->name,
-                $application?->event?->name
-            )
-        );
+        AccessCardGenerate::dispatch($application->id);
 
         return $application;
     }
