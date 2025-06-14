@@ -56,7 +56,7 @@ class EventApplicationExport implements FromCollection, WithMapping, WithHeading
         return [
             $eventApplication->id,
             $eventApplication->user->name,
-            $eventApplication->user->birth_date - now()->format('%y'),
+            \Carbon\Carbon::parse($eventApplication->user->birth_date)->age,
             $eventApplication->user->gender,
             $eventApplication->user->email,
             $eventApplication->user->phone,
