@@ -79,8 +79,6 @@ class MailSend extends Page implements HasForms
                 $application->user->notify(new CustomNotification($data['subject'], $data['content']));
             });
 
-            info("merhaba");
-
         } catch (Halt $exception) {
             return;
         }
