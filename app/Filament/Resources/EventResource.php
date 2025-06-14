@@ -106,12 +106,12 @@ class EventResource extends Resource
                     ->hidden(fn (Model $record) => $record->end_date < now()),
                 Tables\Actions\EditAction::make()
                     ->hidden(fn (Model $record) => $record->end_date < now()),
-                Tables\Actions\Action::make('Check-in', 'check-in')
+               /* Tables\Actions\Action::make('Check-in', 'check-in')
                     ->requiresConfirmation()
                     ->modalDescription('Etkinliğe kaydolan herkese mail gönderilecek. Onaylıyor musunuz?')
                     ->action(fn (Model $record, EventApplicationService $applicationService) => $applicationService->checkIn($record->id))
                     ->disabled(fn (Model $record) => $record->whereRelation('applications', 'check_in', null)->count() === 0)
-                    ->hidden(fn (Model $record) => $record->end_date < now()),
+                    ->hidden(fn (Model $record) => $record->end_date < now()),*/
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
