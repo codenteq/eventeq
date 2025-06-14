@@ -17,11 +17,33 @@ class EventApplicationExport implements FromCollection, WithMapping, WithHeading
     }
 
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection(): \Illuminate\Support\Collection
     {
-            return EventApplication::query()->where('event_id', $this->eventId)->with(['city', 'user'])->get();
+        $applications = EventApplication::query()
+            ->where('event_id', $this->eventId)
+            ->with(['city', 'user', 'children'])
+            ->get();
+
+        $result = collect();
+
+        foreach ($applications as $application) {
+            $result->push([
+                'type' => 'applicant',
+                'data' => $application
+            ]);
+
+            foreach ($application->children as $child) {
+                $result->push([
+                    'type' => 'child',
+                    'data' => $child,
+                    'parent' => $application
+                ]);
+            }
+        }
+
+        return $result;
     }
 
     public function headings(): array
@@ -41,48 +63,72 @@ class EventApplicationExport implements FromCollection, WithMapping, WithHeading
             'Geliş Tarihi',
             'Ayrılış Tarihi',
             /* 'Çadır',
-            'Uyku Tulumu',
-            'Mat',
-            'Sandalye',
-            'Teleskop',
-            'Teleskop Markası',
-            'Dürbün',
-            'Kamera',
-            'Tripod',
-            'Telsiz',
-            'Bilgisayar',*/
+                'Uyku Tulumu',
+                'Mat',
+                'Sandalye',
+                'Teleskop',
+                'Teleskop Markası',
+                'Dürbün',
+                'Kamera',
+                'Tripod',
+                'Telsiz',
+                'Bilgisayar',*/
         ];
     }
 
-    public function map($eventApplication): array
+    public function map($row): array
     {
         $this->rowNumber++;
 
-        return [
-            $this->rowNumber,
-            $eventApplication->id,
-            $eventApplication->user->name,
-            \Carbon\Carbon::parse($eventApplication->user->birth_date)->age,
-            $eventApplication->user->gender,
-            $eventApplication->user->email,
-            $eventApplication->user->phone,
-            $eventApplication->city->name,
-            $eventApplication->job,
-            $eventApplication->bring_telescope ? 'Evet' : 'Hayır',
-            $eventApplication->share_telescope ? 'Evet' : 'Hayır',
-            $eventApplication->arrival_date,
-            $eventApplication->departure_date,
-            /* $eventApplication->tent,
-           $eventApplication->sleeping_bag,
-           $eventApplication->mat,
-           $eventApplication->chair,
-           $eventApplication->telescope,
-           $eventApplication->telescope_brand,
-           $eventApplication->binocular,
-           $eventApplication->camera,
-           $eventApplication->tripod,
-           $eventApplication->walkie_talkie,
-           $eventApplication->computer,*/
-        ];
+        if ($row['type'] === 'applicant') {
+            $application = $row['data'];
+            return [
+                $this->rowNumber,
+                $application->id,
+                $application->user->name,
+                \Carbon\Carbon::parse($application->user->birth_date)->age,
+                $application->user->gender,
+                $application->user->email,
+                $application->user->phone,
+                $application->city->name,
+                $application->job,
+                $application->bring_telescope ? 'Evet' : 'Hayır',
+                $application->share_telescope ? 'Evet' : 'Hayır',
+                $application->arrival_date,
+                $application->departure_date,
+            ];
+        } else {
+            // This is a child
+            $child = $row['data'];
+            $parent = $row['parent'];
+
+            return [
+                $this->rowNumber,
+                $parent->id,
+                $child->full_name,
+                \Carbon\Carbon::parse($child->birth_date)->age,
+                $child->gender ?? '-',
+                '-', // Email
+                '-', // Phone
+                $parent->city->name,
+                '-', // Job
+                '-', // Telescope
+                '-', // Share
+                $parent->arrival_date,
+                $parent->departure_date,
+                /* $eventApplication->tent,
+                   $eventApplication->sleeping_bag,
+                   $eventApplication->mat,
+                   $eventApplication->chair,
+                   $eventApplication->telescope,
+                   $eventApplication->telescope_brand,
+                   $eventApplication->binocular,
+                   $eventApplication->camera,
+                   $eventApplication->tripod,
+                   $eventApplication->walkie_talkie,
+                   $eventApplication->computer,*/
+            ];
+        }
     }
 }
+
