@@ -15,10 +15,15 @@ export default function EventApplicationSuccess({application}) {
                             <h3 className="text-green-500 font-semibold mb-2">
                                 Başvuru Numaranız : {application?.id}
                             </h3>
-                            <p className="text-blue-500 font-semibold mb-2">
+                            {/*<p className="text-blue-500 font-semibold mb-2">
                                 Lütfen Başvuru numaranızı Check-in sırasında kullanmak için saklayınız. Size bu numara eposta
                                 ile de gönderilmiştir.
+                            </p>*/}
+                            <p className="text-blue-500 font-semibold mb-2">
+                                Etkinlik alanında görüşmek üzere..
+                                Dijital giriş yaka kartlarınız eposta adresinize gönderilmiştir.
                             </p>
+                            <p className="text-red-500 font-semibold mb-2">(Başvurunuzu ve giriş kartlarınızı içeren epostanız SPAM (Gereksiz) klasörüne düşmüş olabilir. Lütfen kontrol ediniz.)</p>
                         </>
                     ) : (
                         <>
