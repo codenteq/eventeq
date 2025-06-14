@@ -10,6 +10,8 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 class EventApplicationExport implements FromCollection, WithMapping, WithHeadings
 {
 
+    private int $rowNumber = 0;
+
     public function __construct(private readonly int $eventId)
     {
     }
@@ -25,6 +27,7 @@ class EventApplicationExport implements FromCollection, WithMapping, WithHeading
     public function headings(): array
     {
         return [
+            '#',
             'Başvuru ID',
             'Adı Soyadı',
             'Yaş',
@@ -53,7 +56,10 @@ class EventApplicationExport implements FromCollection, WithMapping, WithHeading
 
     public function map($eventApplication): array
     {
+        $this->rowNumber++;
+
         return [
+            $this->rowNumber,
             $eventApplication->id,
             $eventApplication->user->name,
             \Carbon\Carbon::parse($eventApplication->user->birth_date)->age,
