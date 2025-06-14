@@ -11,6 +11,7 @@
         "filament/filament": "^3.2",
         "inertiajs/inertia-laravel": "^1.2",
         "laravel/framework": "^11.9",
+        "laravel/pulse": "^1.4",
         "laravel/tinker": "^2.9",
         "maatwebsite/excel": "^3.1",
         "predis/predis": "^2.2",
