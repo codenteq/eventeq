@@ -104,18 +104,18 @@ class EventApplicationExport implements FromCollection, WithMapping, WithHeading
 
             return [
                 $this->rowNumber,
-                $parent->id,
+                '',
                 $child->full_name,
                 \Carbon\Carbon::parse($child->birth_date)->age,
-                $child->gender ?? '-',
-                '-', // Email
-                '-', // Phone
+                $child->gender,
+                '', // Email
+                '', // Phone
                 $parent->city->name,
-                '-', // Job
-                '-', // Telescope
-                '-', // Share
-                $parent->arrival_date,
-                $parent->departure_date,
+                '', // Job
+                '', // Telescope
+                '', // Share
+                '',
+                '',
                 /* $eventApplication->tent,
                    $eventApplication->sleeping_bag,
                    $eventApplication->mat,
