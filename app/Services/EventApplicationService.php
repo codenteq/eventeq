@@ -80,7 +80,7 @@ class EventApplicationService
             ]);
         });
 
-        AccessCardGenerate::dispatch($application->id);
+        AccessCardGenerate::dispatch($application->id)->delay(now()->addSeconds(10));
 
         return $application;
     }
@@ -130,7 +130,7 @@ class EventApplicationService
             ]);
         }
 
-        AccessCardGenerate::dispatch($application->id);
+        AccessCardGenerate::dispatch($application->id)->delay(now()->addSeconds(10));
     }
 
     public function checkIn(int $eventId): void

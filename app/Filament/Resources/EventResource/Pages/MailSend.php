@@ -76,7 +76,7 @@ class MailSend extends Page implements HasForms
 
             // Send mail
             $this->record->applications()->each(function ($application) use(&$data) {
-                $application->user->notify(new CustomNotification($data['subject'], $data['content']));
+                $application->user->notify((new CustomNotification($data['subject'], $data['content']))->delay(now()->addSeconds(10)));
             });
 
         } catch (Halt $exception) {

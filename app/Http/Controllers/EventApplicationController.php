@@ -72,7 +72,7 @@ class EventApplicationController extends Controller
             'check_in' => now()
         ]);
 
-        AccessCardGenerate::dispatch($eventApplication->id);
+        AccessCardGenerate::dispatch($eventApplication->id)->delay(now()->addSeconds(10));
 
         return redirect()->route('application.success', $eventApplication);
     }
