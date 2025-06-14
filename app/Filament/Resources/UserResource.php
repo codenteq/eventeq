@@ -40,7 +40,7 @@ class UserResource extends Resource
                         Forms\Components\TextInput::make('email')
                             ->email()
                             ->required()
-                            ->unique(User::class, 'email', ignoreRecord: true)
+                            //->unique(User::class, 'email', ignoreRecord: true)
                             ->maxLength(255)
                             ->label('Email'),
                         Forms\Components\TextInput::make('password')
