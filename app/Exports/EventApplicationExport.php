@@ -27,6 +27,7 @@ class EventApplicationExport implements FromCollection, WithMapping, WithHeading
         return [
             'Başvuru ID',
             'Adı Soyadı',
+            'Yaş',
             'Cinsiyet',
             'E-Posta',
             'Telefon',
@@ -36,7 +37,6 @@ class EventApplicationExport implements FromCollection, WithMapping, WithHeading
             'Teleskop Paylaşımı',
             'Geliş Tarihi',
             'Ayrılış Tarihi',
-            'Check-In Tarihi',
             /* 'Çadır',
             'Uyku Tulumu',
             'Mat',
@@ -56,6 +56,7 @@ class EventApplicationExport implements FromCollection, WithMapping, WithHeading
         return [
             $eventApplication->id,
             $eventApplication->user->name,
+            $eventApplication->user->birth_date ? now()->diffInYears($eventApplication->user->birth_date) : 'Bilinmiyor',
             $eventApplication->user->gender,
             $eventApplication->user->email,
             $eventApplication->user->phone,
@@ -65,7 +66,6 @@ class EventApplicationExport implements FromCollection, WithMapping, WithHeading
             $eventApplication->share_telescope ? 'Evet' : 'Hayır',
             $eventApplication->arrival_date,
             $eventApplication->departure_date,
-            $eventApplication->check_in,
             /* $eventApplication->tent,
            $eventApplication->sleeping_bag,
            $eventApplication->mat,
