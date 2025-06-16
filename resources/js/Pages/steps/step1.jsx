@@ -8,6 +8,7 @@ export default function Step1({data, setData, cities}) {
         'Diş hekimi',
         'Öğretmen',
         'Mühendis',
+        'Yazılım Geliştirici',
         'Kamu',
         'Hemşire',
         'Serbest meslek Dernek müdürü'
