@@ -152,7 +152,7 @@ export default function EventApplicationForm({cities, event, application = null}
                     <div className={`flex items-center ${step !== 1 ? 'justify-between' : 'justify-end'}`}>
                         {step !== 1 && <Button type="button" label="Geri" onClick={handlePrev}/>}
                         {step !== 5 && <Button type="button" label="Sonraki" onClick={handleNext}/> }
-                        {!application && step === 5 && <Button type="submit" label="Başvuruyu Tamamla"/>}
+                        {!application && step === 5 && <Button type="submit" disabled={form.processing} label="Başvuruyu Tamamla"/>}
                     </div>
                     {application && <Button type="submit" label="Check In Onayla"/>}
                 </form>
