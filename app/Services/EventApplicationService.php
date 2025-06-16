@@ -28,7 +28,7 @@ class EventApplicationService
                 ->exists();
 
             if ($existingApplication) {
-                throw new \Exception('Bu etkinlik için zaten bir başvurunuz bulunmaktadır.');
+                throw new \Exception('Bu etkinlik için zaten bir kaydınız bulunmaktadır.');
             }
         }
 
