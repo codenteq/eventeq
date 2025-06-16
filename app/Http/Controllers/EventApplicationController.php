@@ -36,9 +36,12 @@ class EventApplicationController extends Controller
     {
         $validated = $request->validated();
 
-        $application = $this->eventApplicationService->create($validated, $event);
-
-        return redirect()->route('application.success', $application);
+        try {
+            $application = $this->eventApplicationService->create($validated, $event);
+            return redirect()->route('application.success', $application);
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
+        }
     }
 
     public function update(UpdateEventApplicationRequest $request, EventApplication $eventApplication): \Illuminate\Http\RedirectResponse

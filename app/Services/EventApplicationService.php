@@ -21,6 +21,17 @@ class EventApplicationService
     {
         $user = User::query()->where('email', $data['email'])->first();
 
+        if ($user) {
+            $existingApplication = EventApplication::query()
+                ->where('user_id', $user->id)
+                ->where('event_id', $eventId)
+                ->exists();
+
+            if ($existingApplication) {
+                throw new \Exception('Bu etkinlik için zaten bir başvurunuz bulunmaktadır.');
+            }
+        }
+
         $application = null;
         $group = null;
 
