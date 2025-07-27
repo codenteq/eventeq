@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use App\Filament\Resources\EventApplicationResource\Widgets\CityEventApplicationChart;
 use App\Filament\Resources\EventApplicationResource\Widgets\EventApplicationChart;
 use App\Filament\Resources\EventApplicationResource\Widgets\JobEventApplicationChart;
+use App\Filament\Resources\EventResource\Widgets\TurkeyMapEventApplication;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -44,7 +45,8 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
-                CityEventApplicationChart::class,
+                TurkeyMapEventApplication::class,
+                //CityEventApplicationChart::class,
                 JobEventApplicationChart::class,
                 EventApplicationChart::class,
             ])
