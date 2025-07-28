@@ -5,7 +5,7 @@
                 Şehir Bazlı Başvurular
             </h2>
         </x-slot>
-        <div class="turkey-map-container" style="position: relative; width: 100%; height: 600px;">
+        <div class="turkey-map-container" style="position: relative; width: 100%;">
             <div id="turkey-map" style="width: 100%; height: 100%;"></div>
         </div>
 
