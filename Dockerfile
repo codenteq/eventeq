@@ -41,23 +41,10 @@ LABEL maintainer="codenteq" \
       org.opencontainers.image.source="https://github.com/codenteq/eventeq" \
       org.opencontainers.image.description="Eventeq production image"
 
-RUN apk add --no-cache \
-        wget \
-        freetype-dev \
-        libjpeg-turbo-dev \
-        libpng-dev \
-        libzip-dev \
-        icu-dev \
-        libxml2-dev \
-        oniguruma-dev \
-        imagemagick-dev \
-        imagemagick \
-        libgomp \
-        postgresql-dev \
-        linux-headers \
-        $PHPIZE_DEPS \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) \
+ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+
+RUN apk add --no-cache wget imagemagick \
+    && install-php-extensions \
         pdo_mysql \
         pdo_pgsql \
         pgsql \
@@ -71,10 +58,8 @@ RUN apk add --no-cache \
         pcntl \
         sockets \
         opcache \
-    && pecl install redis imagick \
-    && docker-php-ext-enable redis imagick \
-    && apk del $PHPIZE_DEPS \
-    && rm -rf /var/cache/apk/* /tmp/pear
+        redis \
+        imagick
 
 RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
