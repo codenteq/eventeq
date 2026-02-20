@@ -21,15 +21,15 @@ COPY tailwind.config.js* ./
 RUN npm run build
 
 # Stage 2 — Composer Dependencies
-FROM composer:2-php8.4 AS composer
+FROM composer:2 AS composer
 
 WORKDIR /app
 
 COPY composer.json composer.lock ./
-RUN composer install --no-dev --no-interaction --no-scripts --no-autoloader --prefer-dist
+RUN composer install --no-dev --no-interaction --no-scripts --no-autoloader --prefer-dist --ignore-platform-req=php
 
 COPY . .
-RUN composer dump-autoload --optimize --no-dev
+RUN composer dump-autoload --optimize --no-dev --ignore-platform-req=php
 
 # Stage 3 — RoadRunner Binary
 FROM ghcr.io/roadrunner-server/roadrunner:2024 AS roadrunner
