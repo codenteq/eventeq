@@ -54,6 +54,7 @@ RUN apk add --no-cache \
         imagemagick \
         libgomp \
         postgresql-dev \
+        linux-headers \
         $PHPIZE_DEPS \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) \
