@@ -21,7 +21,7 @@ COPY tailwind.config.js* ./
 RUN npm run build
 
 # Stage 2 — Composer Dependencies
-FROM composer:2 AS composer
+FROM composer:2-php8.4 AS composer
 
 WORKDIR /app
 
