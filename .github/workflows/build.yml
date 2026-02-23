@@ -1,0 +1,62 @@
+name: Docker Build and Publish
+
+on:
+  release:
+    types:
+      - published
+
+env:
+  REGISTRY: ghcr.io
+  REPO_OWNER: ${{ github.repository_owner }}
+  IMAGE_NAME: eventeq
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to Github Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GH_TOKEN }}
+
+      - name: Extract image metadata
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.IMAGE_NAME }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./deploy/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+
+  cleanup:
+    runs-on: ubuntu-latest
+    needs: build
+    if: success()
+    permissions:
+      packages: write
+    steps:
+      - name: Delete old package versions (keep only latest)
+        uses: actions/delete-package-versions@v4
+        with:
+          package-name: ${{ env.IMAGE_NAME }}
+          package-type: 'container'
+          min-versions-to-keep: 1
+          delete-only-untagged-versions: false
+          token: ${{ secrets.GH_TOKEN }}
